@@ -1,0 +1,167 @@
+SELECT * from quran;
+SELECT * from blog;
+SELECT * from notice;
+SELECT * from about;
+SELECT * from committee;
+SELECT * from event;
+SELECT * from book;
+SELECT * from users;
+
+ALTER TABLE quran RENAME COLUMN verser_bangla TO verse_bangla;
+
+
+CREATE TABLE quran(
+	verse_no VARCHAR(6) PRIMARY KEY,
+	verse_arabic TEXT NOT NULL,
+	verser_bangla TEXT NOT NULL
+);
+
+INSERT INTO quran (verse_no, verse_arabic, verser_bangla) 
+VALUES
+('002001', 'الم', 'আলিফ, লাম, মিম।'),
+('002002', 'ذَٰلِكَ الْكِتَابُ لَا رَيْبَ ۛ فِيهِ ۛ هُدًى لِّلْمُتَّقِينَ', 'এই সেই কিতাব, এতে কোনো সন্দেহ নেই। এটি মুত্তাকীদের জন্য পথপ্রদর্শক।'),
+('002003', 'الَّذِينَ يُؤْمِنُونَ بِالْغَيْبِ وَيُقِيمُونَ الصَّلَاةَ وَمِمَّا رَزَقْنَاهُمْ يُنفِقُونَ', 'যারা গায়েবের উপর বিশ্বাস করে, সালাত প্রতিষ্ঠা করে এবং আমি তাদের যা রিযিক দিয়েছি তা থেকে ব্যয় করে।'),
+('002004', 'وَالَّذِينَ يُؤْمِنُونَ بِمَا أُنزِلَ إِلَيْكَ وَمَا أُنزِلَ مِن قَبْلِكَ وَبِالْآخِرَةِ هُمْ يُوقِنُونَ', 'এবং যারা বিশ্বাস করে যা তোমার প্রতি নাযিল করা হয়েছে এবং যা তোমার পূর্বে নাযিল করা হয়েছে, আর আখেরাতের প্রতি তারা দৃঢ় বিশ্বাস রাখে।'),
+('002005', 'أُولَٰئِكَ عَلَىٰ هُدًى مِّن رَّبِّهِمْ وَأُولَٰئِكَ هُمُ الْمُفْلِحُونَ', 'তারাই তাদের প্রতিপালকের পক্ষ থেকে সঠিক পথে রয়েছে এবং তারাই সফলকাম।');
+
+
+
+CREATE TABLE blog(
+	id SERIAL PRIMARY KEY,
+	title TEXT NOT NULL,
+	description TEXT NOT NULL,
+	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO blog (title, description)
+VALUES
+('জীবনের উদ্দেশ্য', 'জীবনের মূল উদ্দেশ্য হলো আল্লাহর সন্তুষ্টি অর্জন করা। আমরা প্রতিটি কাজের মাধ্যমে যেন সেই লক্ষ্যেই এগিয়ে যাই।'),
+
+('সময় ব্যবস্থাপনা', 'প্রতিদিনের সময়কে সঠিকভাবে ব্যবহার করলে জীবনে সফলতা আসবেই। সময়ই হলো মানুষের সবচেয়ে বড় সম্পদ।'),
+
+('জ্ঞান অর্জনের গুরুত্ব', 'জ্ঞান এমন এক সম্পদ যা ভাগ করলে কমে না, বরং বাড়ে। ইসলামে জ্ঞান অর্জনকে ফরজ করা হয়েছে।'),
+
+('ধৈর্যের ফল', 'ধৈর্যধারণকারী মানুষ কখনো ক্ষতিগ্রস্ত হয় না। আল্লাহ ধৈর্যশীলদের সাথে আছেন।'),
+
+('নিজেকে পরিবর্তন করুন', 'যে ব্যক্তি নিজের চিন্তা পরিবর্তন করতে পারে, সে তার পুরো জীবনকেই পরিবর্তন করতে পারে।'),
+
+('অসৎ কাজের পরিণতি', 'অন্যায় কাজ কখনো স্থায়ীভাবে টিকে না। ন্যায়ের জয় সর্বদা নিশ্চিত।'),
+
+('ইবাদতের মানে', 'ইবাদত শুধু নামাজ-রোযা নয়, বরং প্রতিটি ভালো কাজই ইবাদত যদি তা আল্লাহর সন্তুষ্টির জন্য করা হয়।'),
+
+('ব্যর্থতা থেকে শিক্ষা', 'ব্যর্থতা কোনো শেষ নয়, বরং নতুনভাবে শুরু করার সুযোগ। প্রতিটি ব্যর্থতা আমাদের কিছু না কিছু শেখায়।'),
+
+('অন্যের প্রতি দয়া', 'দয়া এমন এক গুণ যা মানুষকে মানুষ করে তোলে। অন্যের প্রতি সহানুভূতিশীল হোন।'),
+
+('আল্লাহর প্রতি আস্থা', 'সবকিছু হারিয়ে গেলেও যদি আল্লাহর প্রতি আস্থা থাকে, তাহলে কিছুই হারায়নি।');
+
+ALTER TABLE blog RENAME COLUMN id TO blog_id;
+
+
+CREATE TABLE about(
+	about_id SERIAL PRIMARY KEY,
+	about_title TEXT NOT NULL,
+	about_description TEXT NOT NULL,
+);
+
+CREATE TABLE notice(
+	notice_id SERIAL PRIMARY KEY,
+	notice_title TEXT NOT NULL,
+	notice_description TEXT NOT NULL,
+	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO notice (notice_title, notice_description) VALUES
+('নতুন ভর্তি বিজ্ঞপ্তি', 'আসন্ন সেমিস্টারের ভর্তি কার্যক্রম শুরু হয়েছে। বিস্তারিত জানার জন্য প্রশাসনিক অফিসে যোগাযোগ করুন বা আমাদের ওয়েবসাইট দেখুন।'),
+('ছুটির নোটিশ', 'ইদুল ফিতর উপলক্ষে প্রতিষ্ঠান ২০ অক্টোবর থেকে ২৫ অক্টোবর পর্যন্ত বন্ধ থাকবে। নিয়মিত ক্লাস ২৬ অক্টোবর থেকে শুরু হবে।'),
+('পরীক্ষার রুটিন প্রকাশ', 'সকল বিভাগের চূড়ান্ত পরীক্ষার রুটিন নোটিশ বোর্ড এবং ওয়েবসাইটে প্রকাশ করা হয়েছে।'),
+('লাইব্রেরির সময় পরিবর্তন', 'শিক্ষার্থীদের সুবিধার্থে লাইব্রেরির সময়সূচি পরিবর্তন করা হয়েছে। এখন থেকে সপ্তাহের প্রতিদিন রাত ৮টা পর্যন্ত খোলা থাকবে।'),
+('কৃত্রিম বুদ্ধিমত্তা কর্মশালা', 'আগামী ১০ নভেম্বর আইটি ল্যাবে “কৃত্রিম বুদ্ধিমত্তা ও মেশিন লার্নিং” বিষয়ক বিশেষ কর্মশালা অনুষ্ঠিত হবে। সকল শিক্ষার্থী অংশগ্রহণ করতে পারবে।'),
+('সিস্টেম মেইনটেন্যান্স', '১৮ অক্টোবর রাত ১২টা থেকে সকাল ৬টা পর্যন্ত সার্ভার মেইনটেন্যান্স চলবে। এই সময়ে অনলাইন সার্ভিসগুলো সাময়িকভাবে বন্ধ থাকবে।'),
+('ফলাফল প্রকাশ', 'চূড়ান্ত সেমিস্টারের ফলাফল প্রকাশিত হয়েছে। শিক্ষার্থীরা অনলাইন স্টুডেন্ট পোর্টালের মাধ্যমে ফলাফল দেখতে পারবে।');
+
+
+CREATE TABLE committee(
+	committee_id SERIAL PRIMARY KEY,
+	committee_title TEXT NOT NULL,
+	committee_description TEXT NOT NULL
+);
+
+INSERT INTO committee (committee_title, committee_description) VALUES
+('সভাপতি', 'মোঃ রাহাত ইসলাম'),
+('সহ-সভাপতি', 'সাইফুল আলম'),
+('সাধারণ সম্পাদক', 'রিফাত হোসেন'),
+('সহ-সাধারণ সম্পাদক', 'তানজিম হাসান'),
+('অর্থ সম্পাদক', 'মেহেদী হাসান'),
+('সাংগঠনিক সম্পাদক', 'আফরোজ হোসাইন'),
+('প্রচার সম্পাদক', 'তাসনিম আহমেদ'),
+('কার্যনির্বাহী সদস্য', 'মুহিবুল্লাহ খান'),
+('কার্যনির্বাহী সদস্য', 'ইমরান হোসেন'),
+('উপদেষ্টা', 'মাহমুদুল হাসান');
+
+
+CREATE TABLE event(
+	event_id SERIAL PRIMARY KEY,
+	event_title TEXT NOT NULL,
+	event_description TEXT NOT NULL,
+	event_photo TEXT[],
+	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+ALTER TABLE event
+ALTER COLUMN event_photo SET DEFAULT ARRAY[]::TEXT[];
+
+ALTER TABLE event
+ALTER COLUMN event_photo DROP DEFAULT;
+
+
+ALTER TABLE event
+ALTER COLUMN event_photo TYPE jsonb
+USING to_jsonb(event_photo);
+
+ALTER TABLE event
+ALTER COLUMN event_photo SET DEFAULT '[]'::jsonb;
+
+
+
+
+INSERT INTO event (event_title, event_description, event_photo)
+VALUES
+('Annual Quran Competition', 
+ 'An event where students recite and compete in Quran memorization.', 
+ ARRAY['photo1.jpg', 'photo2.jpg', 'photo3.jpg']),
+
+('Community Iftar', 
+ 'Breaking the fast together with the local community during Ramadan.', 
+ ARRAY['iftar1.jpg', 'iftar2.jpg']),
+
+('Islamic Seminar', 
+ 'A seminar about the teachings of Islam and community development.', 
+ ARRAY['seminar1.jpg']);
+
+CREATE TABLE book(
+	book_id TEXT PRIMARY KEY,
+	book_title TEXT NOT NULL,
+	book_description TEXT NOT NULL,
+	book_photo TEXT NOT NULL,
+	book_status TEXT NOT NULL,
+	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO book (book_id, book_title, book_description, book_photo, book_status)
+VALUES
+('B001', 'Mathematics for Beginners', 'A comprehensive guide to basic mathematics concepts.', 'https://example.com/images/math.jpg', 'available'),
+('B002', 'Introduction to Physics', 'An easy-to-understand physics book for beginners.', 'https://example.com/images/physics.jpg', 'available'),
+('B003', 'World History', 'A detailed history of world events and civilizations.', 'https://example.com/images/history.jpg', 'unavailable'),
+('B004', 'English Grammar', 'Essential English grammar rules and exercises.', 'https://example.com/images/english.jpg', 'available');
+
+DELETE FROM book WHERE book_id = 'B004';
+
+CREATE TABLE users (
+	username varchar(100) PRIMARY KEY,
+	password varchar(100) NOT NULL
+);
+
+ALTER TABLE users
+ALTER COLUMN password TYPE TEXT
+
