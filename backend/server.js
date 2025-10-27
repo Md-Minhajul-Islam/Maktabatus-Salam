@@ -19,14 +19,15 @@ const pool = require("./db/config/dbConfig");
 const app = express();
 const port = process.env.PORT || 5000;
 
-// database connection
-pool.connect((err, client, release) => {
-  if (err) {
-    next(err);
-  }
-  console.log("PostgresSQL  connected successfully!");
-  release();
-});
+
+pool
+  .connect()
+  .then((client) => {
+    console.log("✅ Connected to Supabase Postgres!");
+    client.release();
+  })
+  .catch((err) => console.error("❌ Connection error:", err.message));
+
 
 app.use(
   cors({

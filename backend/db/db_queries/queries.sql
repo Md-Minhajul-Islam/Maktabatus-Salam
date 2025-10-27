@@ -1,15 +1,3 @@
-SELECT * from quran;
-SELECT * from blog;
-SELECT * from notice;
-SELECT * from about;
-SELECT * from committee;
-SELECT * from event;
-SELECT * from book;
-SELECT * from users;
-
-ALTER TABLE quran RENAME COLUMN verser_bangla TO verse_bangla;
-
-
 CREATE TABLE quran(
 	verse_no VARCHAR(6) PRIMARY KEY,
 	verse_arabic TEXT NOT NULL,
@@ -25,15 +13,14 @@ VALUES
 ('002005', 'أُولَٰئِكَ عَلَىٰ هُدًى مِّن رَّبِّهِمْ وَأُولَٰئِكَ هُمُ الْمُفْلِحُونَ', 'তারাই তাদের প্রতিপালকের পক্ষ থেকে সঠিক পথে রয়েছে এবং তারাই সফলকাম।');
 
 
-
 CREATE TABLE blog(
-	id SERIAL PRIMARY KEY,
-	title TEXT NOT NULL,
-	description TEXT NOT NULL,
+	blog_id SERIAL PRIMARY KEY,
+	blog_title TEXT NOT NULL,
+	blog_description TEXT NOT NULL,
 	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO blog (title, description)
+INSERT INTO blog (blog_title, blog_description)
 VALUES
 ('জীবনের উদ্দেশ্য', 'জীবনের মূল উদ্দেশ্য হলো আল্লাহর সন্তুষ্টি অর্জন করা। আমরা প্রতিটি কাজের মাধ্যমে যেন সেই লক্ষ্যেই এগিয়ে যাই।'),
 
@@ -55,13 +42,11 @@ VALUES
 
 ('আল্লাহর প্রতি আস্থা', 'সবকিছু হারিয়ে গেলেও যদি আল্লাহর প্রতি আস্থা থাকে, তাহলে কিছুই হারায়নি।');
 
-ALTER TABLE blog RENAME COLUMN id TO blog_id;
-
 
 CREATE TABLE about(
 	about_id SERIAL PRIMARY KEY,
 	about_title TEXT NOT NULL,
-	about_description TEXT NOT NULL,
+	about_description TEXT NOT NULL
 );
 
 CREATE TABLE notice(
@@ -104,40 +89,9 @@ CREATE TABLE event(
 	event_id SERIAL PRIMARY KEY,
 	event_title TEXT NOT NULL,
 	event_description TEXT NOT NULL,
-	event_photo TEXT[],
+	event_photo JSONB DEFAULT '[]'::JSONB,
 	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-ALTER TABLE event
-ALTER COLUMN event_photo SET DEFAULT ARRAY[]::TEXT[];
-
-ALTER TABLE event
-ALTER COLUMN event_photo DROP DEFAULT;
-
-
-ALTER TABLE event
-ALTER COLUMN event_photo TYPE jsonb
-USING to_jsonb(event_photo);
-
-ALTER TABLE event
-ALTER COLUMN event_photo SET DEFAULT '[]'::jsonb;
-
-
-
-
-INSERT INTO event (event_title, event_description, event_photo)
-VALUES
-('Annual Quran Competition', 
- 'An event where students recite and compete in Quran memorization.', 
- ARRAY['photo1.jpg', 'photo2.jpg', 'photo3.jpg']),
-
-('Community Iftar', 
- 'Breaking the fast together with the local community during Ramadan.', 
- ARRAY['iftar1.jpg', 'iftar2.jpg']),
-
-('Islamic Seminar', 
- 'A seminar about the teachings of Islam and community development.', 
- ARRAY['seminar1.jpg']);
 
 CREATE TABLE book(
 	book_id TEXT PRIMARY KEY,
@@ -148,20 +102,7 @@ CREATE TABLE book(
 	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO book (book_id, book_title, book_description, book_photo, book_status)
-VALUES
-('B001', 'Mathematics for Beginners', 'A comprehensive guide to basic mathematics concepts.', 'https://example.com/images/math.jpg', 'available'),
-('B002', 'Introduction to Physics', 'An easy-to-understand physics book for beginners.', 'https://example.com/images/physics.jpg', 'available'),
-('B003', 'World History', 'A detailed history of world events and civilizations.', 'https://example.com/images/history.jpg', 'unavailable'),
-('B004', 'English Grammar', 'Essential English grammar rules and exercises.', 'https://example.com/images/english.jpg', 'available');
-
-DELETE FROM book WHERE book_id = 'B004';
-
 CREATE TABLE users (
 	username varchar(100) PRIMARY KEY,
-	password varchar(100) NOT NULL
+	password TEXT NOT NULL
 );
-
-ALTER TABLE users
-ALTER COLUMN password TYPE TEXT
-
