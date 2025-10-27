@@ -30,11 +30,16 @@ export default function () {
   const handleLogout = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/login/logout",{}, {
-        withCredentials: true,
-      });
+      const response = await axios.post(
+        "http://localhost:5000/login/logout",
+        {},
+        {
+          withCredentials: true,
+        }
+      );
       setUsername("");
       setPassword("");
+      navigate("/");
     } catch (err) {
       setError(err.response.data.message);
     }
