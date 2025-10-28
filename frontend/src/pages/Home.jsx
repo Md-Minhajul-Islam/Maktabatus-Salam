@@ -3,7 +3,7 @@ import axios from "axios";
 
 import { FaEllipsisH } from "react-icons/fa";
 
-import ConfirmDialog from "../utils/confirmDialog";
+import ConfirmDialog from "../utils/ConfirmDialog";
 import QuranCard from "../components/QuranCard";
 import TextCard from "../components/TextCard";
 import EditModal from "../components/EditModal";

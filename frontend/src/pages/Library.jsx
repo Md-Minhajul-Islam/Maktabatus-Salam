@@ -3,7 +3,7 @@ import AddBookIcon from "/images/add-book-icon.png";
 import AddBookModal from "../components/AddBookModal";
 import axios from "axios";
 import { FaTrash, FaEdit } from "react-icons/fa";
-import ConfirmDialog from "../utils/confirmDialog";
+import ConfirmDialog from "../utils/ConfirmDialog";
 import CheckLoggedIn from "../utils/CheckLoggedIn";
 import API_BASE_URL from "../config";
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import ConfirmDialog from "../utils/confirmDialog";
+import ConfirmDialog from "../utils/ConfirmDialog";
 import EventCard from "../components/EventCard";
 import AddEventModal from "../components/AddEventModal";
 import CheckLoggedIn from "../utils/CheckLoggedIn";

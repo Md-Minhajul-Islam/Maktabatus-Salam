@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import ConfirmDialog from "../utils/confirmDialog";
+import ConfirmDialog from "../utils/ConfirmDialog";
 import TextCard from "../components/TextCard";
 import EditModal from "../components/EditModal";
 import AddNoticeIcon from "/images/add-notice-icon.png";

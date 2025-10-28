@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import QuranCard from "../components/QuranCard";
-import ConfirmDialog from "../utils/confirmDialog";
+import ConfirmDialog from "../utils/ConfirmDialog";
 import { FaTrash } from "react-icons/fa";
 import API_BASE_URL from "../config";
 

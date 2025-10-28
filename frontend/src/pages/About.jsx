@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { FaTrash, FaEdit } from "react-icons/fa";
-import ConfirmDialog from "../utils/confirmDialog";
+import ConfirmDialog from "../utils/ConfirmDialog";
 import EditModal from "../components/EditModal";
 import AddPostIconWhite from "/images/add-post-icon-white.png";
 import AddPostIcon from "/images/add-post-icon.png";
