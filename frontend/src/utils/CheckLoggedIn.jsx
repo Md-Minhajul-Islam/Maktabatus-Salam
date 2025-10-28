@@ -9,7 +9,6 @@ export default async function CheckLoggedIn() {
     if (response.data.loggedIn) return true;
     else return false;
   } catch (err) {
-    console.log(err);
     return false;
   }
 }
