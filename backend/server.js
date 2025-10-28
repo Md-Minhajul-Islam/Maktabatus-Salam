@@ -30,7 +30,7 @@ const port = process.env.PORT || 5000;
 // origin: "http://localhost:5173",
 // https://maktabatus-salam-4msg286pe-md-minhajul-islams-projects-4d6dedcd.vercel.app
 //https://maktabatus-salam.vercel.app
-https: app.use(
+app.use(
   cors({
     origin: [
       "http://localhost:5173",
