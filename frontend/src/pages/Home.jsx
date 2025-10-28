@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 import { FaEllipsisH } from "react-icons/fa";
@@ -126,9 +127,9 @@ const Home = () => {
       <section className="bg-gray-100 text-center p-2 pt-3 relative">
         {loggedIn && (
           <div>
-            <a href="/quran">
+            <Link to="/quran">
               <FaEllipsisH className="text-gray-400 size-3 absolute right-3" />
-            </a>
+            </Link>
             <br />
           </div>
         )}
