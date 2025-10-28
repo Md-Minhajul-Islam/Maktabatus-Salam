@@ -206,7 +206,7 @@ const Library = () => {
                 </div>
               </td>
 
-              <td className="border border-green-700 border-collapse text-justify p-0.5">
+              <td className="border border-green-700 border-collapse p-0.5">
                 <div className=" overflow-auto">
                   <p className="font-bangla-semibold mb-1 text-sm">
                     {book.book_title}
