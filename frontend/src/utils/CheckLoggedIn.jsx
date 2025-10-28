@@ -1,9 +1,10 @@
 import axios from "axios";
+import API_BASE_URL from "../config";
 
 export default async function CheckLoggedIn() {
   // return true;
   try {
-    const response = await axios.get("http://localhost:5000/check", {
+    const response = await axios.get(`${API_BASE_URL}/check`, {
       withCredentials: true,
     });
     if (response.data.loggedIn) return true;
