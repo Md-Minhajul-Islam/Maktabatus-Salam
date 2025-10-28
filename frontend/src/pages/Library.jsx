@@ -5,6 +5,7 @@ import axios from "axios";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import ConfirmDialog from "../utils/confirmDialog";
 import CheckLoggedIn from "../utils/CheckLoggedIn";
+import API_BASE_URL from "../config";
 
 const Library = () => {
   const [books, setBooks] = useState([]);
@@ -26,7 +27,7 @@ const Library = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const bookRes = await axios.get("http://localhost:5000/book");
+        const bookRes = await axios.get(`${API_BASE_URL}/book`);
         setBooks(bookRes.data);
         setFilteredBooks(bookRes.data);
       } catch (err) {
@@ -64,7 +65,7 @@ const Library = () => {
 
         if (add) {
           const response = await axios.post(
-            "http://localhost:5000/book",
+            `${API_BASE_URL}/book`,
             formData,
             {
               headers: { "Content-Type": "multipart/form-data" },
@@ -75,7 +76,7 @@ const Library = () => {
           setFilteredBooks((prev) => [response.data.data, ...prev]);
         } else {
           const response = await axios.put(
-            "http://localhost:5000/book",
+            `${API_BASE_URL}/book`,
             formData,
             {
               headers: { "Content-Type": "multipart/form-data" },
@@ -106,7 +107,7 @@ const Library = () => {
     const confirmed = await ConfirmDialog();
     if (!confirmed) return;
     try {
-      const deleteRes = await axios.delete("http://localhost:5000/book", {
+      const deleteRes = await axios.delete(`${API_BASE_URL}/book`, {
         data: { book_id },
         withCredentials: true,
       });

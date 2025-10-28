@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import API_BASE_URL from "../config";
 
 export default function () {
   const [username, setUsername] = useState("");
@@ -12,7 +13,7 @@ export default function () {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/login",
+         `${API_BASE_URL}/login`,
         {
           username,
           password,
@@ -31,7 +32,7 @@ export default function () {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/login/logout",
+        `${API_BASE_URL}/login/logout`,
         {},
         {
           withCredentials: true,
@@ -49,7 +50,7 @@ export default function () {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/login/register",
+        `${API_BASE_URL}/login/register`,
         {
           username,
           password,

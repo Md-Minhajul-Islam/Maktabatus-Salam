@@ -4,7 +4,7 @@ import axios from "axios";
 import QuranCard from "../components/QuranCard";
 import ConfirmDialog from "../utils/confirmDialog";
 import { FaTrash } from "react-icons/fa";
-
+import API_BASE_URL from "../config";
 
 const Quran = () => {
   const [quran, setQuran] = useState([]);
@@ -19,7 +19,7 @@ const Quran = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const quranRes = await axios.get("http://localhost:5000/quran");
+        const quranRes = await axios.get(`${API_BASE_URL}/quran`);
         setQuran(quranRes.data);
       } catch (err) {
         setError(err.response.data.message);
@@ -36,7 +36,7 @@ const Quran = () => {
     if (!confirmed) return;
 
     try {
-      const deleteRes = await axios.delete("http://localhost:5000/quran", {
+      const deleteRes = await axios.delete(`${API_BASE_URL}/quran`, {
         data: { verse_no },
         withCredentials: true,
       });
@@ -55,7 +55,7 @@ const Quran = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/quran",
+        `${API_BASE_URL}/quran`,
         formData,
         { withCredentials: true }
       );

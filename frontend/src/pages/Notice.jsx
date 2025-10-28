@@ -6,6 +6,7 @@ import TextCard from "../components/TextCard";
 import EditModal from "../components/EditModal";
 import AddNoticeIcon from "/images/add-notice-icon.png";
 import CheckLoggedIn from "../utils/CheckLoggedIn";
+import API_BASE_URL from "../config";
 
 const Notice = () => {
   const [notice, setNotice] = useState([]);
@@ -25,7 +26,7 @@ const Notice = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const noticeRes = await axios.get("http://localhost:5000/notice");
+        const noticeRes = await axios.get(`${API_BASE_URL}/notice`);
         setNotice(noticeRes.data);
       } catch (err) {
         setError(err.response.data.message);
@@ -40,7 +41,7 @@ const Notice = () => {
     const confirmed = await ConfirmDialog();
     if (!confirmed) return;
     try {
-      const deleteRes = await axios.delete("http://localhost:5000/notice", {
+      const deleteRes = await axios.delete(`${API_BASE_URL}/notice`, {
         data: { notice_id },
         withCredentials: true,
       });
@@ -71,7 +72,7 @@ const Notice = () => {
       let response;
       if (editData && editData.id && editData.title && editData.description) {
         response = await axios.put(
-          "http://localhost:5000/notice",
+            `${API_BASE_URL}/notice`,
           {
             notice_id: editData.id,
             notice_title: editData.title,
@@ -86,7 +87,7 @@ const Notice = () => {
         );
       } else if (editData && editData.title && editData.description) {
         response = await axios.post(
-          "http://localhost:5000/notice",
+          `${API_BASE_URL}/notice`,
           {
             notice_title: editData.title,
             notice_description: editData.description,

@@ -10,6 +10,7 @@ import EditModal from "../components/EditModal";
 
 import AddPostIcon from "/images/add-post-icon.png";
 import CheckLoggedIn from "../utils/CheckLoggedIn";
+import API_BASE_URL from "../config";
 
 const Home = () => {
   const [quran, setQuran] = useState([]);
@@ -32,8 +33,8 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const [quranRes, blogsRes] = await Promise.all([
-          axios.get("http://localhost:5000/quran"),
-          axios.get("http://localhost:5000/blog"),
+          axios.get(`${API_BASE_URL}/quran`),
+          axios.get(`${API_BASE_URL}/blog`),
         ]);
         setQuran(quranRes.data);
         setBlogs(blogsRes.data);
@@ -56,7 +57,7 @@ const Home = () => {
     const confirmed = await ConfirmDialog();
     if (!confirmed) return;
     try {
-      const deleteRes = await axios.delete("http://localhost:5000/blog", {
+      const deleteRes = await axios.delete(`${API_BASE_URL}/blog`, {
         data: { blog_id },
         withCredentials: true,
       });
@@ -82,7 +83,7 @@ const Home = () => {
       let response;
       if (editData && editData.id && editData.title && editData.description) {
         response = await axios.put(
-          "http://localhost:5000/blog",
+          `${API_BASE_URL}/blog`,
           {
             blog_id: editData.id,
             blog_title: editData.title,
@@ -95,7 +96,7 @@ const Home = () => {
         );
       } else if (editData && editData.title && editData.description) {
         response = await axios.post(
-          "http://localhost:5000/blog",
+          `${API_BASE_URL}/blog`,
           {
             blog_title: editData.title,
             blog_description: editData.description,

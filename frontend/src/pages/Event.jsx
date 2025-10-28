@@ -6,7 +6,7 @@ import EventCard from "../components/EventCard";
 import AddEventModal from "../components/AddEventModal";
 import CheckLoggedIn from "../utils/CheckLoggedIn";
 import AddEventIcon from "/images/add-event-icon.png";
-
+import API_BASE_URL from "../config";
 
 const Event = () => {
   const [event, setEvent] = useState([]);
@@ -26,7 +26,7 @@ const Event = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const eventRes = await axios.get("http://localhost:5000/event");
+        const eventRes = await axios.get(`${API_BASE_URL}/event`);
         setEvent(eventRes.data);
       } catch (err) {
         setError(err.response.data.message);
@@ -41,7 +41,7 @@ const Event = () => {
     const confirmed = await ConfirmDialog();
     if (!confirmed) return;
     try {
-      const deleteRes = await axios.delete("http://localhost:5000/event", {
+      const deleteRes = await axios.delete(`${API_BASE_URL}/event`, {
         data: { event_id },
         withCredentials: true,
       });
@@ -73,7 +73,7 @@ const Event = () => {
 
       if (editData.event_id) {
         const response = await axios.put(
-          "http://localhost:5000/event",
+          `${API_BASE_URL}/event`,
           formData,
           { withCredentials: true }
         );
@@ -84,7 +84,7 @@ const Event = () => {
         );
       } else {
         const response = await axios.post(
-          "http://localhost:5000/event",
+          `${API_BASE_URL}/event`,
           formData,
           { withCredentials: true }
         );
