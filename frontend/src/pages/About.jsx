@@ -6,6 +6,7 @@ import EditModal from "../components/EditModal";
 import AddPostIconWhite from "/images/add-post-icon-white.png";
 import AddPostIcon from "/images/add-post-icon.png";
 import CheckLoggedIn from "../utils/CheckLoggedIn";
+import API_BASE_URL from "../config";
 
 const About = () => {
   const [about, setAbout] = useState([]);
@@ -28,8 +29,8 @@ const About = () => {
     const fetchData = async () => {
       try {
         const [aboutRes, committeeRes] = await Promise.all([
-          axios.get("http://localhost:5000/about"),
-          axios.get("http://localhost:5000/committee"),
+          axios.get(`${API_BASE_URL}/about`),
+          axios.get(`${API_BASE_URL}/committee`),
         ]);
         setAbout(aboutRes.data);
         setCommittee(committeeRes.data);
@@ -46,7 +47,7 @@ const About = () => {
     const confirmed = await ConfirmDialog();
     if (!confirmed) return;
     try {
-      const deleteRes = await axios.delete(`http://localhost:5000/${name}`, {
+      const deleteRes = await axios.delete(`${API_BASE_URL}/${name}`, {
         data: { [`${name}_id`]: id },
         withCredentials: true,
       });
@@ -83,7 +84,7 @@ const About = () => {
       let response;
       if (editData && editData.id && editData.title && editData.description) {
         response = await axios.put(
-          `http://localhost:5000/${currentWork}`,
+          `${API_BASE_URL}/${currentWork}`,
           {
             [`${currentWork}_id`]: editData.id,
             [`${currentWork}_title`]: editData.title,
@@ -107,7 +108,7 @@ const About = () => {
         }
       } else if (editData && editData.title && editData.description) {
         response = await axios.post(
-          `http://localhost:5000/${currentWork}`,
+          `${API_BASE_URL}/${currentWork}`,
           {
             [`${currentWork}_title`]: editData.title,
             [`${currentWork}_description`]: editData.description,
