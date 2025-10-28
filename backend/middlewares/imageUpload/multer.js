@@ -1,11 +1,11 @@
 const multer = require("multer");
 const path = require("path");
-const { createError } = require('../common/errorHandler');
+const { createError } = require("../common/errorHandler");
 
 // Configure storage
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./uploads"); // folder to temporarily store files
+    cb(null, path.join(__dirname, "../../uploads")); // folder to temporarily store files
   },
   filename: function (req, file, cb) {
     // keep original name or create unique name
