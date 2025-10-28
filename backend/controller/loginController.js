@@ -88,10 +88,16 @@ async function login(req, res, next) {
 
 async function logout(req, res, next) {
   try {
-    res.clearCookie("msToken");
-    res
-      .status(200)
-      .json({ status: "success", message: "Logged out successfully" });
+    res.clearCookie("msToken", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+    });
+    res.status(200).json({
+      status: "success",
+      message: "Logged out successfully",
+    });
+
   } catch (err) {
     next(err);
   }
