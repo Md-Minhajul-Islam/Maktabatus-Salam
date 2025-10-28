@@ -7,6 +7,7 @@ import AddEventModal from "../components/AddEventModal";
 import CheckLoggedIn from "../utils/CheckLoggedIn";
 import AddEventIcon from "/images/add-event-icon.png";
 
+
 const Event = () => {
   const [event, setEvent] = useState([]);
   const [editData, setEditData] = useState(null);

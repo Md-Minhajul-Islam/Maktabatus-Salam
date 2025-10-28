@@ -35,6 +35,8 @@ async function addEvent(req, res, next) {
         )
       );
     }
+    req.files.forEach((file) => fs.unlinkSync(file.path));
+
     const event_photo = uploadResults.map((u) => u.secure_url);
 
     const result = await pool.query(
