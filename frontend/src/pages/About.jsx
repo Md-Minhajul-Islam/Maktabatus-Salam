@@ -122,6 +122,7 @@ const About = () => {
           setCommittee((prev) => [...prev, response.data.data]);
         }
       }
+      setEditData(null);
     } catch (err) {
       setError(err.response.data.message);
     }
