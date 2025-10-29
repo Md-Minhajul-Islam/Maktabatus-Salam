@@ -107,14 +107,14 @@ const Event = () => {
   if (error) return <p className="text-red-500 text-center">{error}</p>;
 
   return (
-    <div>
+    <div className="md:flex md:flex-col">
       {loggedIn && (
         <section className="p-1.5">
           <button
             onClick={() => {
               onEdit({});
             }}
-            className="text-green-700 right-2 absolute font-bold"
+            className="text-green-700 right-2 absolute font-bold md:right-1/8 md:hover:cursor-pointer"
           >
             <img className="w-5" src={AddEventIcon} alt="Add+" />
           </button>
@@ -123,7 +123,7 @@ const Event = () => {
       )}
 
       {/* event Section */}
-      <section className="h-screen">
+      <section className="h-screen md:w-3/4 md:mx-auto">
         <AddEventModal
           isOpen={showEditModal}
           editData={editData}

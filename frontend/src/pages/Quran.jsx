@@ -74,11 +74,11 @@ const Quran = () => {
     );
   if (error) return <p className="text-red-500 text-center">{error}</p>;
   return (
-    <div>
-      <div className="p-3">
+    <div className="md:flex md:flex-col">
+      <div className="p-3 md:w-3/4 md:mx-auto">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col text-xs font-mono"
+          className="flex flex-col text-xs font-mono md:text-sm"
         >
           <input
             className="border-1 border-gray-500 m-0.5 rounded-xs"
@@ -108,7 +108,7 @@ const Quran = () => {
             required
           ></input>
           <button
-            className="bg-green-800 text-white font-mono m-0.5 rounded-xs"
+            className="bg-green-800 text-white font-mono m-0.5 rounded-xs md:hover:cursor-pointer"
             type="submit"
           >
             Add Verse
@@ -118,10 +118,10 @@ const Quran = () => {
       {quran.map((verse) => (
         <div
           key={verse.verse_no}
-          className="p-3 bg-gray-50 mb-1 text-sm relative text-right"
+          className="p-3 bg-gray-50 mb-1 text-sm relative text-right md:w-3/4 md:mx-auto md:text-base"
         >
           <button onClick={() => deleteVerse(verse.verse_no)}>
-            <FaTrash className="text-gray-300 size-3 absolute top-2 left-3" />
+            <FaTrash className="text-gray-300 size-3 absolute top-2 left-3 md:text-gray-400 md:hover:cursor-pointer" />
           </button>
           <QuranCard data={verse} />
         </div>

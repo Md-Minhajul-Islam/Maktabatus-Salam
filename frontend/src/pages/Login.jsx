@@ -73,15 +73,15 @@ export default function () {
     <div className="flex flex-col items-center font-mono text-md">
       <button
         onClick={handleLogout}
-        className="right-3 absolute text-xs m-2 rounded-xs bg-red-700 pl-1 pb-0.5 pr-1 text-white"
+        className="right-3 absolute text-xs m-2 rounded-xs bg-red-700 pl-1 pb-0.5 pr-1 text-white md:text-base md:hover:cursor-pointer md:right-1/17"
       >
         Logout
       </button>
-      <form className="flex flex-col m-15">
+      <form className="flex flex-col m-15 md:text-lg md:gap-3">
         <label htmlFor="username">Username:</label>
         <input
           onChange={(e) => setUsername(e.target.value)}
-          className="border rounded-xs"
+          className="border rounded-xs md:w-lg"
           type="text"
           required
         />
@@ -95,15 +95,13 @@ export default function () {
         <div className="flex justify-center m-3 gap-2">
           <button
             onClick={handleLogin}
-            className="text-xs pl-3 pr-3 text-white bg-green-700 rounded-xs"
-            type="submit"
+            className="text-xs pl-3 pr-3 text-white bg-green-700 rounded-xs md:text-base md:hover:cursor-pointer"
           >
             Login
           </button>
           <button
             onClick={handleRegister}
-            className="pl-1 pr-1 text-xs text-white bg-sky-700 rounded-xs"
-            type="submit"
+            className="pl-1 pr-1 text-xs text-white bg-sky-700 rounded-xs md:text-base md:hover:cursor-pointer"
           >
             Register
           </button>

@@ -139,7 +139,7 @@ const About = () => {
   if (error) return <p className="text-red-500 text-center">{error}</p>;
 
   return (
-    <div>
+    <div className="md:flex md:flex-col">
       <EditModal
         isOpen={showEditModal}
         editData={editData}
@@ -150,7 +150,7 @@ const About = () => {
       />
 
       {/* About Section  */}
-      <section className="text-sm">
+      <section className="text-sm md:w-3/4 md:mx-auto md:text-base">
         {loggedIn && (
           <div className="relative">
             <button
@@ -159,7 +159,11 @@ const About = () => {
               }}
               className="top-1 right-2 absolute"
             >
-              <img className="w-5" src={AddPostIcon} alt="Add+" />
+              <img
+                className="w-5 md:hover:cursor-pointer"
+                src={AddPostIcon}
+                alt="Add+"
+              />
             </button>
           </div>
         )}
@@ -172,10 +176,10 @@ const About = () => {
             {loggedIn && (
               <div className="absolute top-1 right-2 flex gap-2">
                 <button onClick={() => onEdit(a, "about")}>
-                  <FaEdit className="text-gray-300 size-3"></FaEdit>
+                  <FaEdit className="text-gray-300 size-3 md:text-gray-400 md:hover:cursor-pointer"></FaEdit>
                 </button>
                 <button onClick={() => onDelete(a.about_id, "about")}>
-                  <FaTrash className="text-gray-300 size-3" />
+                  <FaTrash className="text-gray-300 size-3 md:text-gray-400 md:hover:cursor-pointer" />
                 </button>
               </div>
             )}
@@ -188,7 +192,7 @@ const About = () => {
       </section>
 
       {/* Committee Section  */}
-      <section className="text-sm mt-10 m-2 p-1.5 text-justify border-1 border-gray-500 rounded-sm shadow-gray-800 shadow-sm">
+      <section className="text-sm mt-10 m-2 p-1.5 text-justify border-1 border-gray-500 rounded-sm shadow-gray-800 shadow-sm md:w-3/4 md:mx-auto md:text-base">
         <div className="relative">
           <p className="bg-green-700 rounded-sm text-white p-0.5 m-1 font-bangla-bold text-center whitespace-pre-line break-words">
             পরিচালনা কমিটি
@@ -198,7 +202,7 @@ const About = () => {
                   onClick={() => {
                     onEdit({}, "committee");
                   }}
-                  className="right-2 absolute font-bold"
+                  className="right-2 absolute font-bold md:hover:cursor-pointer"
                 >
                   <img className="w-5" src={AddPostIconWhite} alt="Add+" />
                 </button>
@@ -206,7 +210,7 @@ const About = () => {
             )}
           </p>
         </div>
-        <div className="m-1 p-1.5 border-2 rounded-sm border-green-700">
+        <div className="m-1 p-1.5 border-2 rounded-sm border-green-700 md:text-lg">
           {committee.map((c) => (
             <div
               key={c.committee_id}
@@ -215,10 +219,10 @@ const About = () => {
               {loggedIn && (
                 <div className="absolute top-1 right-2 flex gap-2">
                   <button onClick={() => onEdit(c, "committee")}>
-                    <FaEdit className="text-gray-300 size-3"></FaEdit>
+                    <FaEdit className="text-gray-300 size-3 md:text-gray-400 md:hover:cursor-pointer"></FaEdit>
                   </button>
                   <button onClick={() => onDelete(c.committee_id, "committee")}>
-                    <FaTrash className="text-gray-300 size-3" />
+                    <FaTrash className="text-gray-300 size-3 md:text-gray-400 md:hover:cursor-pointer" />
                   </button>
                 </div>
               )}

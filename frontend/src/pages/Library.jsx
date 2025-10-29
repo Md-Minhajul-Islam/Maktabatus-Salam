@@ -163,13 +163,13 @@ const Library = () => {
         <input
           onChange={searchData}
           placeholder="Search. . ."
-          className="font-bangla-regular text-sm pl-2 border border-green-800 rounded-2xl"
+          className="font-bangla-regular text-sm pl-2 border border-green-800 rounded-2xl md:text-sm md:w-lg"
           type="text"
         />
         {loggedIn && (
           <button
             onClick={() => openModal(null, true)}
-            className="absolute right-2"
+            className="absolute right-2 md:right-1/8 md:hover:cursor-pointer"
           >
             <img className="w-5" src={AddBookIcon} alt="Add+" />
           </button>
@@ -177,8 +177,8 @@ const Library = () => {
       </div>
 
       {/* Book List  */}
-      <table className="w-full text-xs border border-green-700 border-collapse whitespace-pre-line break-words font-mono">
-        <thead className="bg-green-700 text-white">
+      <table className="w-full text-xs border border-green-700 border-collapse whitespace-pre-line break-words font-mono md:w-3/4 md:mx-auto md:text-sm">
+        <thead className="bg-green-700 text-white md:text-base">
           <tr>
             <th className="border border-green-900 border-collapse">Id</th>
             <th className="border border-green-900 border-collapse">Photo</th>
@@ -199,7 +199,7 @@ const Library = () => {
               <td className="border border-green-700 border-collapse p-0.5">
                 <div className="flex justify-center items-center">
                   <img
-                    className="object-cover max-w-30 max-h-30 border border-gray-500 rounded-xs shadow-gray-500 shadow-xs"
+                    className="object-cover max-w-30 max-h-30 border border-gray-500 rounded-xs shadow-gray-500 shadow-xs md:max-w-50 md:max-h-50"
                     src={book.book_photo}
                     alt="photo"
                   />
@@ -208,7 +208,7 @@ const Library = () => {
 
               <td className="border border-green-700 border-collapse p-0.5">
                 <div className=" overflow-auto">
-                  <p className="font-bangla-semibold mb-1 text-sm">
+                  <p className="font-bangla-semibold mb-1 text-sm md:text-base">
                     {book.book_title}
                   </p>
                   <p className="font-bangla-regular">{book.book_description}</p>
@@ -221,10 +221,10 @@ const Library = () => {
                   {loggedIn && (
                     <div className="flex gap-2">
                       <button onClick={() => openModal(book, false)}>
-                        <FaEdit className="text-gray-300 size-3"></FaEdit>
+                        <FaEdit className="text-gray-300 size-3 md:text-gray-400  md:hover:cursor-pointer"></FaEdit>
                       </button>
                       <button onClick={() => onDelete(book.book_id)}>
-                        <FaTrash className="text-gray-400 size-3" />
+                        <FaTrash className="text-gray-400 size-3 md:text-gray-400  md:hover:cursor-pointer" />
                       </button>
                     </div>
                   )}

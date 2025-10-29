@@ -40,7 +40,7 @@ export default function EditModal({ isOpen, onClose, editData, onEdit, add }) {
 
   return (
     <div className="fixed inset-0 flex justify-center items-center z-50 p-3">
-      <div className="bg-gray-50 w-full h-2/3 flex overflow-y-auto border-1 border-gray-500 p-3 rounded-sm shadow-gray-800 shadow-sm">
+      <div className="bg-gray-50 w-full h-2/3 flex overflow-y-auto border-1 border-gray-500 p-3 rounded-sm shadow-gray-800 shadow-sm md:w-2/4 md:mx-auto">
         <form
           onSubmit={handleSubmit}
           className="w-full flex flex-col text-xs font-mono justify-center gap-3"
@@ -105,13 +105,13 @@ export default function EditModal({ isOpen, onClose, editData, onEdit, add }) {
 
           <div className="flex justify-center gap-2">
             <button
-              className="bg-green-800 text-white font-mono m-0.5 rounded-sm pl-2 pr-2 pt-1 pb-1"
+              className="bg-green-800 text-white font-mono m-0.5 rounded-sm pl-2 pr-2 pt-1 pb-1 md:hover:cursor-pointer"
               type="submit"
             >
               Save
             </button>
             <button
-              className="bg-red-800 text-white font-mono m-0.5 rounded-sm p-1"
+              className="bg-red-800 text-white font-mono m-0.5 rounded-sm p-1 md:hover:cursor-pointer"
               onClick={onClose}
             >
               Close
