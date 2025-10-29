@@ -122,7 +122,6 @@ const About = () => {
           setCommittee((prev) => [...prev, response.data.data]);
         }
       }
-      setEditData(null);
     } catch (err) {
       setError(err.response.data.message);
     }
@@ -197,7 +196,7 @@ const About = () => {
               <span>
                 <button
                   onClick={() => {
-                    onEdit(null, "committee");
+                    onEdit({}, "committee");
                   }}
                   className="right-2 absolute font-bold"
                 >
