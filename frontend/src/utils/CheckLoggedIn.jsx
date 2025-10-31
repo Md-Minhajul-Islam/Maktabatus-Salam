@@ -6,7 +6,8 @@ export default async function CheckLoggedIn() {
     const response = await axios.get(`${API_BASE_URL}/check`, {
       withCredentials: true,
     });
-    return true;
+    if (response.data.loggedIn) return true;
+    else return false;
   } catch (err) {
     return false;
   }

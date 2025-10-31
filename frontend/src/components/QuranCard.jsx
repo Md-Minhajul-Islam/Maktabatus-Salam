@@ -3,7 +3,7 @@ import toBanglaNumber from "../utils/EnglishToBanglaNumberConverter";
 
 export default function QuranCard({ data }) {
   return (
-    <div>
+    <div className="md:p-5">
       <p className="font-arabic-light">{data.verse_arabic}</p>
       <p className="font-q-bangla">{data.verse_bangla}</p>
       {data.verse_no && (

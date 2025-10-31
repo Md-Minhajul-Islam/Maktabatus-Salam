@@ -10,7 +10,7 @@ function TextCard({ data, name, onDelete, onEdit, loggedIn }) {
   };
 
   return (
-    <div className="bg-gray-50 mt-0.5 p-2 text-xs text-justify">
+    <div className="bg-gray-50 p-2 text-xs text-justify border border-gray-200 rounded-xs m-1">
       <div className="relative gap-1">
         {loggedIn && (
           <div className="absolute top-0 right-2 flex gap-2">
