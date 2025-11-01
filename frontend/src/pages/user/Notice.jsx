@@ -32,15 +32,23 @@ const Notice = () => {
         </p>
       </div>
     );
-  if (error) return <p className="text-red-500 text-center">{error}</p>;
+  if (error)
+    return (
+      <div>
+        <Menu />
+        <p className="text-red-500 text-center">{error}</p>
+      </div>
+    );
 
   return (
-    <section className="h-screen md:flex md:flex-col md:w-3/4 md:mx-auto">
+    <div>
       <Menu />
-      {notice.map((notice) => (
-        <TextCard key={notice.notice_id} data={notice} name={"notice"} />
-      ))}
-    </section>
+      <section className="h-screen md:flex md:flex-col md:w-3/4 md:mx-auto">
+        {notice.map((notice) => (
+          <TextCard key={notice.notice_id} data={notice} name={"notice"} />
+        ))}
+      </section>
+    </div>
   );
 };
 

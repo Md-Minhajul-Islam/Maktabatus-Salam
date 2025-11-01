@@ -1,10 +1,11 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/user/Home";
 import Notice from "./pages/user/Notice";
 import Event from "./pages/user/Event";
 import About from "./pages/user/About";
 import Library from "./pages/user/Library";
+import Donate from "./pages/user/Donate";
 import Login from "./pages/user/Login";
 
 import Dashboard from "./pages/admin/Dashboard";
@@ -14,8 +15,7 @@ import AdminNotice from "./pages/admin/Notice";
 import AdminEvent from "./pages/admin/Event";
 import AdminLibrary from "./pages/admin/Library";
 import AdminAbout from "./pages/admin/About";
-import Quran from "./pages/admin/Quran";
-import Blog from "./pages/admin/Blog";
+
 
 export default function App() {
   return (
@@ -30,6 +30,7 @@ export default function App() {
             <Route path="/event" element={<Event />} />
             <Route path="/about" element={<About />} />
             <Route path="/library" element={<Library />} />
+            <Route path="/donation/:tran_id?" element={<Donate />} />
             <Route path="/login" element={<Login />} />
 
             {/* Admin Section */}
@@ -39,7 +40,7 @@ export default function App() {
             <Route path="/admin/notice" element={<AdminNotice />} />
             <Route path="/admin/event" element={<AdminEvent />} />
             <Route path="/admin/library" element={<AdminLibrary />} />
-            <Route path="/admin/about" element={<AdminLibrary />} />
+            <Route path="/admin/about" element={<AdminAbout />} />
           </Routes>
         </main>
       </div>

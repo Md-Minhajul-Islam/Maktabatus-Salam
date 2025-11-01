@@ -26,6 +26,9 @@ export default function EditModal({ isOpen, onClose, editData, onEdit }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onEdit({ id, title, description });
+    setId("");
+    setTitle("");
+    setDescription("");
   };
 
   if (!isOpen) return null;

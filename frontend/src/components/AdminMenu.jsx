@@ -1,15 +1,34 @@
 import { useState } from "react";
+import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
+import API_BASE_URL from "../config";
 
-const Menu = () => {
+const AdminMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post(
+        `${API_BASE_URL}/login/logout`,
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+    } catch (err) {
+      setError(err.response.data.message);
+    }
+  };
+
+  if (error) return <p className="text-red-500 m-10 text-center">{error}</p>;
 
   return (
-    <nav className="">
+    <nav className="relative">
       {/* Hamburger Menu Icon (only for mobile) */}
       <button
-        className="md:hidden right-2 fixed top-3 text-gray-300"
+        className="md:hidden right-2 fixed top-3 text-gray-300 z-50"
         onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
@@ -18,46 +37,50 @@ const Menu = () => {
       {/* Desktop Navbar */}
       <div className="hidden md:flex md:w-full  bg-green-700 text-white font-semibold font-mono p-2 justify-center gap-10">
         <NavLink
-          to="/"
+          to="/admin"
+          end
           className={({ isActive }) => (isActive ? "underline" : "")}
         >
-          HOME
+          DASHBOARD
         </NavLink>
         <NavLink
-          to="/notice"
+          to="/admin/quran"
+          className={({ isActive }) => (isActive ? "underline" : "")}
+        >
+          QURAN
+        </NavLink>
+        <NavLink
+          to="/admin/blog"
+          className={({ isActive }) => (isActive ? "underline" : "")}
+        >
+          BLOG
+        </NavLink>
+        <NavLink
+          to="/admin/notice"
           className={({ isActive }) => (isActive ? "underline" : "")}
         >
           NOTICE
         </NavLink>
         <NavLink
-          to="/event"
+          to="/admin/event"
           className={({ isActive }) => (isActive ? "underline" : "")}
         >
           EVENT
         </NavLink>
         <NavLink
-          to="/library"
+          to="/admin/library"
           className={({ isActive }) => (isActive ? "underline" : "")}
         >
           LIBRARY
         </NavLink>
         <NavLink
-          to="/about"
+          to="/admin/about"
           className={({ isActive }) => (isActive ? "underline" : "")}
         >
           ABOUT
         </NavLink>
-        <NavLink
-          to="/donation"
-          className={({ isActive }) => (isActive ? "underline" : "")}
-        >
-          DONATE
-        </NavLink>
-        <NavLink
-          to="/login"
-          className={({ isActive }) => (isActive ? "underline" : "")}
-        >
-          LOGIN
+        <NavLink to="/" onClick={handleLogout}>
+          LOGOUT
         </NavLink>
       </div>
 
@@ -79,17 +102,36 @@ const Menu = () => {
             className={({ isActive }) =>
               isActive ? "underline" : "text-gray-300"
             }
+            end
             onClick={() => setIsOpen(false)}
-            to="/"
+            to="/admin"
           >
-            HOME
+            DASHBOARD
           </NavLink>
           <NavLink
             className={({ isActive }) =>
               isActive ? "underline" : "text-gray-300"
             }
             onClick={() => setIsOpen(false)}
-            to="/notice"
+            to="/admin/quran"
+          >
+            QURAN
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "underline" : "text-gray-300"
+            }
+            onClick={() => setIsOpen(false)}
+            to="/admin/blog"
+          >
+            BLOG
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "underline" : "text-gray-300"
+            }
+            onClick={() => setIsOpen(false)}
+            to="/admin/notice"
           >
             NOTICE
           </NavLink>
@@ -98,7 +140,7 @@ const Menu = () => {
               isActive ? "underline" : "text-gray-300"
             }
             onClick={() => setIsOpen(false)}
-            to="/event"
+            to="/admin/event"
           >
             EVENT
           </NavLink>
@@ -107,7 +149,7 @@ const Menu = () => {
               isActive ? "underline" : "text-gray-300"
             }
             onClick={() => setIsOpen(false)}
-            to="/library"
+            to="/admin/library"
           >
             LIBRARY
           </NavLink>
@@ -116,27 +158,16 @@ const Menu = () => {
               isActive ? "underline" : "text-gray-300"
             }
             onClick={() => setIsOpen(false)}
-            to="/about"
+            to="/admin/about"
           >
             ABOUT
           </NavLink>
           <NavLink
-            className={({ isActive }) =>
-              isActive ? "underline" : "text-gray-300"
-            }
-            onClick={() => setIsOpen(false)}
-            to="/donation"
+            to="/"
+            className= "text-gray-300"
+            onClick={handleLogout}
           >
-            DONATE
-          </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? "underline" : "text-gray-300"
-            }
-            onClick={() => setIsOpen(false)}
-            to="/login"
-          >
-            LOGIN
+            LOGOUT
           </NavLink>
         </div>
       </div>
@@ -144,4 +175,4 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default AdminMenu;

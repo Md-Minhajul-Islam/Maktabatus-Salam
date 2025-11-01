@@ -14,7 +14,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-         `${API_BASE_URL}/login`,
+        `${API_BASE_URL}/login`,
         {
           username,
           password,
@@ -29,67 +29,46 @@ const Login = () => {
     }
   };
 
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(
-        `${API_BASE_URL}/login/register`,
-        {
-          username,
-          password,
-        },
-        {
-          withCredentials: true,
-        }
-      );
-      setUsername("");
-      setPassword("");
-      navigate("/");
-    } catch (err) {
-      setError(err.response.data.message);
-    }
-  };
-
-  if (error) return <p className="text-red-500 text-center">{error}</p>;
+  if (error)
+    return (
+      <div>
+        <Menu />
+        <p className="text-red-500 text-center">{error}</p>
+      </div>
+    );
 
   return (
-    <div className="flex flex-col items-center font-mono text-md">
+    <div>
       <Menu />
-      <form className="flex flex-col m-15 md:text-lg md:gap-3">
-        <label htmlFor="username">Username:</label>
-        <input
-          onChange={(e) => setUsername(e.target.value)}
-          className="border rounded-xs md:w-lg"
-          type="text"
-          required
-        />
-        <label htmlFor="password">Password:</label>
-        <input
-          onChange={(e) => setPassword(e.target.value)}
-          className="border rounded-xs"
-          type="password"
-          required
-        />
-        <div className="flex justify-center m-3 gap-2">
+      <div className="flex flex-col items-center font-mono text-md">
+        <form
+          onSubmit={handleLogin}
+          className="flex flex-col m-15 md:text-lg md:gap-3"
+        >
+          <label htmlFor="username">Username:</label>
+          <input
+            onChange={(e) => setUsername(e.target.value)}
+            className="border rounded-xs md:w-md"
+            type="text"
+            required
+          />
+          <label htmlFor="password">Password:</label>
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            className="border rounded-xs md:w-md"
+            type="password"
+            required
+          />
           <button
-            onClick={handleLogin}
-            className="text-xs p-1 pl-3 pr-3 text-white bg-green-700 rounded-xs md:text-base md:hover:cursor-pointer"
+            type="submit"
+            className="w-20 m-3 self-center text-xs p-1 pl-3 pr-3 text-white bg-green-700 rounded-xs md:text-base md:hover:cursor-pointer"
           >
             Login
           </button>
-          <button
-            onClick={handleRegister}
-            className="p-1 pl-1 pr-1 text-xs text-white bg-sky-700 rounded-xs md:text-base md:hover:cursor-pointer"
-          >
-            Register
-          </button>
-        </div>
-        <span className="text-red-500 text-xs font-sans">
-          *Only Admins can register new users.
-        </span>
-      </form>
+        </form>
+      </div>
     </div>
   );
-}
+};
 
 export default Login;

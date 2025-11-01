@@ -51,7 +51,13 @@ const Library = () => {
         </p>
       </div>
     );
-  if (error) return <p className="text-red-500 text-center">{error}</p>;
+  if (error)
+    return (
+      <div>
+        <Menu />
+        <p className="text-red-500 text-center">{error}</p>
+      </div>
+    );
 
   return (
     <div>

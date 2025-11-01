@@ -32,15 +32,23 @@ const Event = () => {
         </p>
       </div>
     );
-  if (error) return <p className="text-red-500 text-center">{error}</p>;
+  if (error)
+    return (
+      <div>
+        <Menu />
+        <p className="text-red-500 text-center">{error}</p>
+      </div>
+    );
 
   return (
-    <section className=" md:flex md:flex-col h-screen md:w-3/4 md:mx-auto">
-      <Menu/>
-      {event.map((event) => (
-        <EventCard key={event.event_id} data={event} />
-      ))}
-    </section>
+    <div>
+      <Menu />
+      <section className=" md:flex md:flex-col h-screen md:w-3/4 md:mx-auto">
+        {event.map((event) => (
+          <EventCard key={event.event_id} data={event} />
+        ))}
+      </section>
+    </div>
   );
 };
 export default Event;
