@@ -9,7 +9,7 @@ const {
 
 const router = express.Router();
 
-// Committee SECTION
+
 router.get("/", getCommittee);
 router.post("/", verifyToken(null), addCommittee);
 router.put("/", verifyToken(null), updateCommittee);

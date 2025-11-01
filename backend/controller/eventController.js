@@ -16,7 +16,6 @@ async function getEvent(req, res, next) {
 
 async function addEvent(req, res, next) {
   try {
-    console.log(req.body);
     let { event_title, event_description } = req.body;
 
     event_title = event_title?.trim();
@@ -50,6 +49,9 @@ async function addEvent(req, res, next) {
       message: "Event added successfully",
     });
   } catch (err) {
+    if (req.files && req.files.length !== 0) {
+      req.files.forEach((file) => fs.unlinkSync(file.path));
+    }
     next(err);
   }
 }
@@ -124,6 +126,9 @@ async function updateEvent(req, res, next) {
       message: "Event updated successfully",
     });
   } catch (err) {
+    if (req.files && req.files.length !== 0) {
+      req.files.forEach((file) => fs.unlinkSync(file.path));
+    }
     next(err);
   }
 }

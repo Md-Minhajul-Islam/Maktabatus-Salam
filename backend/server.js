@@ -13,6 +13,7 @@ const eventRouter = require("./router/eventRouter");
 const bookRouter = require("./router/bookRouter");
 const loginRouter = require("./router/loginRouter");
 const checkRouter = require("./router/checkRouter");
+const donationRouter = require("./router/donationRouter");
 const { errorHandler } = require("./middlewares/common/errorHandler");
 const pool = require("./db/config/dbConfig");
 
@@ -32,10 +33,7 @@ const port = process.env.PORT || 5000;
 //https://maktabatus-salam.vercel.app
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://maktabatus-salam.vercel.app",
-    ],
+    origin: ["http://localhost:5173", "https://maktabatus-salam.vercel.app"],
     credentials: true,
   })
 );
@@ -52,6 +50,7 @@ app.use("/event", eventRouter);
 app.use("/book", bookRouter);
 app.use("/login", loginRouter);
 app.use("/check", checkRouter);
+app.use("/donation", donationRouter);
 
 // common error handler
 app.use(errorHandler);

@@ -59,6 +59,7 @@ async function addBook(req, res, next) {
       message: "Book added successfully",
     });
   } catch (err) {
+    if(req.file) fs.unlinkSync(req.file.path);
     next(err);
   }
 }
@@ -113,6 +114,7 @@ async function updateBook(req, res, next) {
       const book_photo = uploadResult.secure_url;
       // deleting photo from local storage after upload
       fs.unlinkSync(req.file.path);
+
       updatedBook = await pool.query(
         `UPDATE book SET book_photo = $2 WHERE book_id = $1 RETURNING *`,
         [book_id, book_photo]
@@ -131,6 +133,7 @@ async function updateBook(req, res, next) {
       message: "Book updated successfully",
     });
   } catch (err) {
+    if (req.file) fs.unlinkSync(req.file.path);
     next(err);
   }
 }
