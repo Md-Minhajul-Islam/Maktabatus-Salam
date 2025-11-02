@@ -1,9 +1,11 @@
 const { createError } = require("../middlewares/common/errorHandler");
+const pool = require("../db/config/dbConfig");
 const validator = require("validator");
 const SSLCommerzPayment = require("sslcommerz-lts");
 const store_id = process.env.DONATION_STORE_ID;
 const store_passwd = process.env.DONATION_STORE_PASSWORD;
 const is_live = false; //true for live, false for sandbox
+const sendEmail = require("../middlewares/nodeMailer/nodemailer");
 
 async function donation(req, res, next) {
   try {
@@ -55,6 +57,12 @@ async function donation(req, res, next) {
     };
     const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live);
     const apiResponse = await sslcz.init(data);
+
+    const result = await pool.query(
+      `INSERT INTO donation (txn_id, email, amount) VALUES ($1, $2, $3) RETURNING *`,
+      [tran_id, email, amount]
+    );
+
     const GatewayPageURL = apiResponse.GatewayPageURL;
     res.status(200).json({ url: GatewayPageURL });
   } catch (err) {
@@ -62,26 +70,79 @@ async function donation(req, res, next) {
   }
 }
 
-
 async function success(req, res, next) {
-    const { tran_id } = req.params;
+  const { tran_id } = req.body;
+
+  try {
+    const donation = await pool.query(
+      `SELECT * FROM donation WHERE txn_id = $1`,
+      [tran_id]
+    );
+
+    if (donation.rows && donation.rows.length > 0) {
+      const donator = donation.rows[0].email;
+      const subject = "Donation Successfull in Maktabatus Salam";
+      const text = `Thanks for you donation in Maktabatus Salam. Your Transaction Id is ${tran_id}`;
+
+      const response = await sendEmail(donator, subject, text);
+    }
+  } catch (err) {
+    next(err);
+  }
+
   res.redirect(`${process.env.DONATION_URL_GET}/${tran_id}`);
 }
 
-
 async function fail(req, res, next) {
-    res.redirect(`${process.env.DONATION_URL_GET}/fail`);
+  const { tran_id } = req.body;
+
+  try {
+    const result = await pool.query(
+      `DELETE FROM donation WHERE txn_id = $1 RETURNING *`,
+      [tran_id]
+    );
+  } catch (err) {
+    next(err);
+  }
+
+  res.redirect(`${process.env.DONATION_URL_GET}/fail`);
 }
 
 async function cancel(req, res, next) {
-    res.redirect(`${process.env.DONATION_URL_GET}/cancel`);    
+  const { tran_id } = req.body;
+
+  try {
+    const result = await pool.query(
+      `DELETE FROM donation WHERE txn_id = $1 RETURNING *`,
+      [tran_id]
+    );
+  } catch (err) {
+    next(err);
+  }
+
+  res.redirect(`${process.env.DONATION_URL_GET}/cancel`);
 }
 
+async function list(req, res, next) {
+  try {
+    const donation = await pool.query(
+      `SELECT * FROM donation ORDER BY date DESC`
+    );
+    const total_donation = await pool.query(`SELECT SUM(amount) FROM donation`);
 
+    res.status(200).json({
+      donations: donation.rows,
+      total_donation: total_donation.rows[0].sum,
+    });
+  } catch (err) {
+    next(err);
+  }
+}
 
 module.exports = {
-    donation,
-    success,
-    fail,
-    cancel,
+  donation,
+  success,
+  fail,
+  cancel,
+  list,
 };

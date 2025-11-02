@@ -14,6 +14,7 @@ const bookRouter = require("./router/bookRouter");
 const loginRouter = require("./router/loginRouter");
 const checkRouter = require("./router/checkRouter");
 const donationRouter = require("./router/donationRouter");
+const analyzerRoute = require("./router/analyzerRoute");
 const { errorHandler } = require("./middlewares/common/errorHandler");
 const pool = require("./db/config/dbConfig");
 
@@ -28,16 +29,14 @@ const port = process.env.PORT || 5000;
 //   })
 //   .catch((err) => console.error("Connection error:", err.message));
 
-// origin: "http://localhost:5173",
-// https://maktabatus-salam-4msg286pe-md-minhajul-islams-projects-4d6dedcd.vercel.app
-//https://maktabatus-salam.vercel.app
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://maktabatus-salam.vercel.app"],
+    origin: [process.env.ORIGIN_1, process.env.ORIGIN_2, process.env.ORIGIN_3],
     credentials: true,
   })
 );
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // routes
@@ -51,6 +50,7 @@ app.use("/book", bookRouter);
 app.use("/login", loginRouter);
 app.use("/check", checkRouter);
 app.use("/donation", donationRouter);
+app.use("/analyzer", analyzerRoute);
 
 // common error handler
 app.use(errorHandler);
