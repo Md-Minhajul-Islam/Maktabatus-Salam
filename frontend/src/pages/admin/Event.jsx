@@ -28,12 +28,12 @@ const Event = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const eventRes = await axios.get(`${API_BASE_URL}/event`);
+        const eventRes = await axios.get(`${API_BASE_URL}/event`, {
+          withCredentials: true,
+        });
         setEvent(eventRes.data);
       } catch (err) {
         setError(err.response.data.message);
-      } finally {
-        setLoading(false);
       }
     };
     fetchData();

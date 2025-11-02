@@ -6,7 +6,6 @@ import QuranCard from "../../components/QuranCard";
 import TextCard from "../../components/TextCard";
 import API_BASE_URL from "../../config";
 
-
 const Home = () => {
   const [quran, setQuran] = useState([]);
   const [currentVerse, setCurrentVerse] = useState({});
@@ -17,10 +16,15 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [quranRes, blogsRes] = await Promise.all([
-          axios.get(`${API_BASE_URL}/quran`),
-          axios.get(`${API_BASE_URL}/blog`),
-        ]);
+        const [quranRes, blogsRes] = await Promise.all(
+          [
+            axios.get(`${API_BASE_URL}/quran`),
+            axios.get(`${API_BASE_URL}/blog`),
+          ],
+          {
+            withCredentials: true,
+          }
+        );
         setQuran(quranRes.data);
         setBlogs(blogsRes.data);
       } catch (err) {
@@ -37,7 +41,6 @@ const Home = () => {
     const randomIndex = Math.floor(Math.random() * quran.length);
     setCurrentVerse(quran[randomIndex]);
   }, [quran]);
-
 
   if (loading)
     return (

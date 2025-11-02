@@ -10,6 +10,7 @@ const Login = () => {
   const [error, setError] = useState(null);
   const { tran_id } = useParams();
 
+
   const handleDonation = async (e) => {
     e.preventDefault();
     try {
@@ -72,10 +73,11 @@ const Login = () => {
         {tran_id === "fail" && (
           <p className="text-red-500 font-bold font-mono">Donation Failed!</p>
         )}
-        {tran_id !== "cancel" && tran_id !== "fail" && (
+        {tran_id && tran_id !== "cancel" && tran_id !== "fail" && (
           <div className="font-mono text-center">
             <p className="font-bold text-green-600">Donation Successfull!</p>
-            <p >Transaction Id: {tran_id}</p>
+            <p>Transaction Id: {tran_id}</p>
+            <p>Please check your email for confirmation mail.</p>
           </div>
         )}
       </div>

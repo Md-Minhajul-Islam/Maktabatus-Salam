@@ -29,12 +29,12 @@ const Notice = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const noticeRes = await axios.get(`${API_BASE_URL}/notice`);
+        const noticeRes = await axios.get(`${API_BASE_URL}/notice`, {
+          withCredentials: true,
+        });
         setNotice(noticeRes.data);
       } catch (err) {
         setError(err.response.data.message);
-      } finally {
-        setLoading(false);
       }
     };
     fetchData();

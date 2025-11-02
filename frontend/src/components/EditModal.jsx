@@ -34,46 +34,54 @@ export default function EditModal({ isOpen, onClose, editData, onEdit }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex justify-center items-center z-50 p-3">
-      <div className="bg-gray-50 w-full h-1/2 flex overflow-y-auto border-1 border-gray-500 p-3 rounded-sm shadow-gray-800 shadow-sm md:w-2/4">
+    <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50 px-3 py-4">
+      <div className="relative bg-gray-50 w-full max-w-2xl h-auto max-h-[80vh] overflow-y-auto border border-gray-400 rounded-lg shadow-xl p-4 sm:p-6">
         <form
           onSubmit={handleSubmit}
-          className="w-full flex flex-col text-xs font-mono justify-center gap-3"
+          className="flex flex-col text-sm sm:text-base font-bangla-regular gap-3"
         >
-          <label htmlFor="title">
+          {/* Title */}
+          <label htmlFor="title" className="font-semibold">
             Title:<span className="text-red-500">*</span>
           </label>
           <textarea
-            className="border-1 border-gray-500 m-0.5 rounded-xs p-1 text-justify"
+            id="title"
             name="title"
             value={title}
             onChange={handleChange}
-            placeholder={title}
+            placeholder="Enter a title..."
             rows={2}
             required
+            className="border border-gray-400 rounded-md p-2 text-justify resize-none focus:outline-none focus:ring-1 focus:ring-green-700"
           ></textarea>
-          <label htmlFor="description">
+
+          {/* Description */}
+          <label htmlFor="description" className="font-semibold">
             Description:<span className="text-red-500">*</span>
           </label>
           <textarea
-            className="border-1 border-gray-500 m-0.5 rounded-xs p-1 text-justify"
+            id="description"
             name="description"
             value={description}
             onChange={handleChange}
-            placeholder={description}
-            rows={10}
+            placeholder="Enter description..."
+            rows={8}
             required
+            className="border border-gray-400 rounded-md p-2 text-justify resize-none focus:outline-none focus:ring-1 focus:ring-green-700"
           ></textarea>
-          <div className="flex justify-center gap-2">
+
+          {/* Buttons */}
+          <div className="flex justify-center gap-3 mt-4 flex-wrap">
             <button
-              className="bg-green-800 text-white font-mono m-0.5 rounded-sm pl-2 pr-2 pt-1 pb-1 md:hover:cursor-pointer"
               type="submit"
+              className="bg-green-700 text-white font-semibold px-4 py-2 rounded-md hover:bg-green-800 transition"
             >
               Save
             </button>
             <button
-              className="bg-red-800 text-white font-mono m-0.5 rounded-sm p-1 md:hover:cursor-pointer"
+              type="button"
               onClick={onClose}
+              className="bg-red-700 text-white font-semibold px-4 py-2 rounded-md hover:bg-red-800 transition"
             >
               Close
             </button>

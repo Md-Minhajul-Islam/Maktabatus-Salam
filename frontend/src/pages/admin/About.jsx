@@ -31,16 +31,19 @@ const About = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [aboutRes, committeeRes] = await Promise.all([
-          axios.get(`${API_BASE_URL}/about`),
-          axios.get(`${API_BASE_URL}/committee`),
-        ]);
+        const [aboutRes, committeeRes] = await Promise.all(
+          [
+            axios.get(`${API_BASE_URL}/about`),
+            axios.get(`${API_BASE_URL}/committee`),
+          ],
+          {
+            withCredentials: true,
+          }
+        );
         setAbout(aboutRes.data);
         setCommittee(committeeRes.data);
       } catch (err) {
         setError(err.response.data.message);
-      } finally {
-        setLoading(false);
       }
     };
     fetchData();

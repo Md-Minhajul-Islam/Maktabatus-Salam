@@ -30,12 +30,12 @@ const Quran = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const quranRes = await axios.get(`${API_BASE_URL}/quran`);
+        const quranRes = await axios.get(`${API_BASE_URL}/quran`,{
+        withCredentials: true,
+      });
         setQuran(quranRes.data);
       } catch (err) {
         setError(err.response.data.message);
-      } finally {
-        setLoading(false);
       }
     };
     fetchData();

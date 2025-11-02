@@ -28,12 +28,12 @@ const Blog = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const blogsRes = await axios.get(`${API_BASE_URL}/blog`);
+        const blogsRes = await axios.get(`${API_BASE_URL}/blog`, {
+          withCredentials: true,
+        });
         setBlogs(blogsRes.data);
       } catch (err) {
         setError(err.response.data.message);
-      } finally {
-        setLoading(false);
       }
     };
     fetchData();
@@ -43,10 +43,7 @@ const Blog = () => {
     const confirmed = await ConfirmDialog();
     if (!confirmed) return;
     try {
-      const deleteRes = await axios.delete(`${API_BASE_URL}/blog`, {
-        data: { blog_id },
-        withCredentials: true,
-      });
+      const deleteRes = await axios.delete(`${API_BASE_URL}/blog`);
       setBlogs((prev) => prev.filter((b) => b.blog_id !== blog_id));
     } catch (err) {
       setError(err.response.data.message);

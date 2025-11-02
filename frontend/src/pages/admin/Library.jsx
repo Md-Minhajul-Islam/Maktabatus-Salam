@@ -30,13 +30,13 @@ const Library = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const bookRes = await axios.get(`${API_BASE_URL}/book`);
+        const bookRes = await axios.get(`${API_BASE_URL}/book`, {
+          withCredentials: true,
+        });
         setBooks(bookRes.data);
         setFilteredBooks(bookRes.data);
       } catch (err) {
         setError(err.response.data.message);
-      } finally {
-        setLoading(false);
       }
     };
     fetchData();
