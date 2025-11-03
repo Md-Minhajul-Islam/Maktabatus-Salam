@@ -85,9 +85,9 @@ async function success(req, res, next) {
       const text = `Thanks for you donation in Maktabatus Salam. Your Transaction Id is ${tran_id}`;
 
       const response = await sendEmail(donator, subject, text);
-      console.log(response);
     }
-    res.redirect(`${process.env.DONATION_URL_GET}/${tran_id}`);
+    res.redirect("https://maktabatus-salam.vercel.app");
+    // res.redirect(`${process.env.DONATION_URL_GET}/${tran_id}`);
   } catch (err) {
     next(err);
   }

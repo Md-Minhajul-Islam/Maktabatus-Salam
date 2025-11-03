@@ -42,7 +42,6 @@ const Dashboard = () => {
             withCredentials: true,
           }
         );
-        console.log(response.data);
         setData([
           { name: "Blogs", value: response.data.blogs },
           { name: "Notices", value: response.data.notices },
