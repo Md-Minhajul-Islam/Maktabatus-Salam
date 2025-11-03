@@ -86,11 +86,11 @@ async function success(req, res, next) {
 
       const response = await sendEmail(donator, subject, text);
     }
+
+    res.redirect(`${process.env.DONATION_URL_GET}/${tran_id}`);
   } catch (err) {
     next(err);
   }
-
-  res.redirect(`${process.env.DONATION_URL_GET}/${tran_id}`);
 }
 
 async function fail(req, res, next) {
