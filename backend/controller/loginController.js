@@ -3,41 +3,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { createError } = require("../middlewares/common/errorHandler");
 
-async function register(req, res, next) {
-  try {
-    let { username, password } = req.body;
-
-    username = username?.trim();
-    password = password?.trim();
-
-    if (!username || !password) {
-      throw createError("All fields are required!", 400);
-    }
-    const existing = await pool.query(
-      `SELECT * FROM users WHERE username = $1`,
-      [username]
-    );
-
-    if (existing.rows.length > 0) {
-      throw createError("User already exists with this email.", 400);
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const result = await pool.query(
-      `INSERT INTO users (username, password) VALUES ($1, $2) RETURNING *`,
-      [username, hashedPassword]
-    );
-
-    res.status(201).json({
-      status: "success",
-      message: "User registered successfully",
-      data: result.rows[0],
-    });
-  } catch (err) {
-    next(err);
-  }
-}
 
 async function login(req, res, next) {
   try {
@@ -104,7 +69,6 @@ async function logout(req, res, next) {
 }
 
 module.exports = {
-  register,
   login,
   logout,
 };

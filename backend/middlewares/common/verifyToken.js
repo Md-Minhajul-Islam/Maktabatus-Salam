@@ -9,9 +9,9 @@ function verifyToken(role) {
       next(createError("Invalid!", 401));
     }
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-      if (err) throw createError("Invalid!", 401);
+      if (err) throw createError("Unauthorized!", 401);
       if (role && decoded.username !== role) {
-        next(createError("Invalid!", 401));
+        next(createError("Unauthorized!", 401));
       }
       req.user = decoded;
       next();

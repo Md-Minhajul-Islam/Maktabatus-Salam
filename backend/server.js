@@ -12,11 +12,15 @@ const committeeRouter = require("./router/committeeRouter");
 const eventRouter = require("./router/eventRouter");
 const bookRouter = require("./router/bookRouter");
 const loginRouter = require("./router/loginRouter");
+const userRouter = require("./router/userRouter");
 const checkRouter = require("./router/checkRouter");
 const donationRouter = require("./router/donationRouter");
 const analyzerRoute = require("./router/analyzerRoute");
+const dashboardRouter = require("./router/dashboardRouter");
 const { errorHandler } = require("./middlewares/common/errorHandler");
+
 const pool = require("./db/config/dbConfig");
+
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -48,9 +52,11 @@ app.use("/committee", committeeRouter);
 app.use("/event", eventRouter);
 app.use("/book", bookRouter);
 app.use("/login", loginRouter);
+app.use("/user", userRouter);
 app.use("/check", checkRouter);
 app.use("/donation", donationRouter);
 app.use("/analyzer", analyzerRoute);
+app.use("/dashboard", dashboardRouter);
 
 // common error handler
 app.use(errorHandler);
