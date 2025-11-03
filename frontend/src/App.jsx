@@ -16,6 +16,7 @@ import AdminEvent from "./pages/admin/Event";
 import AdminLibrary from "./pages/admin/Library";
 import AdminAbout from "./pages/admin/About";
 import AdminDonation from "./pages/admin/Donation";
+import AdminUser from "./pages/admin/User";
 
 
 export default function App() {
@@ -43,6 +44,7 @@ export default function App() {
             <Route path="/admin/library" element={<AdminLibrary />} />
             <Route path="/admin/about" element={<AdminAbout />} />
             <Route path="/admin/donation" element={<AdminDonation />} />
+            <Route path="/admin/user" element={<AdminUser/>}/>
           </Routes>
         </main>
       </div>

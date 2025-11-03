@@ -86,7 +86,7 @@ export default function EditModal({ isOpen, onClose, editData, onEdit }) {
           />
 
           {/* Buttons */}
-          <div className="flex flex-col sm:flex-row justify-center gap-3 mt-3">
+          <div className="flex justify-center gap-3 mt-3">
             <button
               className="bg-green-700 text-white font-semibold rounded-sm px-4 py-2 hover:bg-green-800 transition"
               type="submit"

@@ -85,6 +85,12 @@ const AdminMenu = () => {
         >
           DONATION
         </NavLink>
+        <NavLink
+          to="/admin/user"
+          className={({ isActive }) => (isActive ? "underline" : "")}
+        >
+          ADMINS
+        </NavLink>
         <NavLink to="/" onClick={handleLogout}>
           LOGOUT
         </NavLink>
@@ -176,6 +182,15 @@ const AdminMenu = () => {
             to="/admin/donation"
           >
             DONATION
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "underline" : "text-gray-300"
+            }
+            onClick={() => setIsOpen(false)}
+            to="/admin/user"
+          >
+            ADMINS
           </NavLink>
           <NavLink to="/" className="text-gray-300" onClick={handleLogout}>
             LOGOUT

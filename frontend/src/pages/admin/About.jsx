@@ -234,7 +234,7 @@ const About = () => {
             {committee.map((c) => (
               <div
                 key={c.committee_id}
-                className="relative shadow-gray-300 shadow-sm rounded-sm p-1.5 whitespace-pre-line break-words"
+                className="hover:bg-green-50 transition-colors duration-200 relative shadow-gray-300 shadow-sm rounded-sm p-1.5 whitespace-pre-line break-words"
               >
                 <div className="absolute top-1 right-2 flex gap-2">
                   <button onClick={() => onEdit(c, "committee")}>

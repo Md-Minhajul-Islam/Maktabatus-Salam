@@ -109,7 +109,7 @@ const Quran = () => {
         <div className="p-3 md:w-3/4 md:mx-auto">
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col text-xs font-mono md:text-sm"
+            className="flex flex-col text-sm font-mono md:text-base"
           >
             <input
               className="border-1 border-gray-500 m-0.5 rounded-xs"
@@ -117,7 +117,7 @@ const Quran = () => {
               name="verse_no"
               value={formData.verse_no}
               onChange={handleChange}
-              placeholder="Verse no e.g., 002001 [2nd Chapter, 1st Verse]"
+              placeholder="Verse no = 002001 [2nd Chapter, 1st Verse]"
               required
             />
             <input
@@ -139,7 +139,7 @@ const Quran = () => {
               required
             ></input>
             <button
-              className="bg-green-800 text-white font-mono m-0.5 rounded-xs md:hover:cursor-pointer"
+              className="bg-green-800 text-white text-sm md:text-base w-20 mx-auto md:w-30 text-center font-mono m-0.5 rounded-sm md:hover:cursor-pointer"
               type="submit"
             >
               Add Verse
@@ -149,7 +149,7 @@ const Quran = () => {
         {quran.map((verse) => (
           <div
             key={verse.verse_no}
-            className="p-3 mb-1 text-sm relative text-right md:w-3/4 md:mx-auto md:text-base"
+            className="hover:bg-green-50 transition-colors duration-200 bg-gray-50 p-3 mb-1 text-sm rounded-xl relative text-right md:w-3/4 md:mx-auto md:text-base"
           >
             <button onClick={() => deleteVerse(verse.verse_no)}>
               <FaTrash className="text-gray-300 size-3 absolute top-2 left-3 md:text-gray-400 md:hover:cursor-pointer" />

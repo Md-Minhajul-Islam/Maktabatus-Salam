@@ -76,7 +76,7 @@ const About = () => {
           {committee.map((c) => (
             <div
               key={c.committee_id}
-              className="shadow-gray-300 shadow-sm rounded-sm p-1.5 whitespace-pre-line break-words"
+              className="hover:bg-green-50 transition-colors duration-200 shadow-gray-300 shadow-sm rounded-sm p-1.5 whitespace-pre-line break-words"
             >
               <p className="font-q-bangla">{c.committee_title}</p>
               <p className="font-bangla-regular">{c.committee_description}</p>
