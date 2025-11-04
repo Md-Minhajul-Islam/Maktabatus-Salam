@@ -86,7 +86,8 @@ async function success(req, res, next) {
 
       const response = await sendEmail(donator, subject, text);
     }
-    res.redirect(`${process.env.DONATION_URL_GET}/${tran_id}`);
+    res.redirect("https://maktabatus-salam.vercel.app");
+    // res.redirect(`${process.env.DONATION_URL_GET}/${tran_id}`);
   } catch (err) {
     next(err);
   }
