@@ -96,9 +96,12 @@ const Dashboard = () => {
             Content Distribution
           </p>
           <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={data}>
+            <BarChart
+              data={data}
+              margin={{ left: -25}}
+            >
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
+              <XAxis className="text-xs md:text-base" dataKey="name" />
               <YAxis />
               <Tooltip />
               <Bar dataKey="value" fill="#15803d" radius={[4, 4, 0, 0]} />
