@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { FaTrash, FaEdit, FaLightbulb, FaTimes } from "react-icons/fa";
 import API_BASE_URL from "../config";
 import axios from "axios";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 function TextCard({ data, name, onDelete, onEdit, loggedIn }) {
   const [expanded, setExpanded] = useState(false);
@@ -41,9 +43,18 @@ function TextCard({ data, name, onDelete, onEdit, loggedIn }) {
             </button>
 
             {/* Analysis content */}
-            <p className="font-bangla-regular whitespace-pre-line break-words text-sm md:text-base text-justify mt-6">
-              {analysis ? analysis : (<span className="text-green-800 text-base md:text-lg">Please wait data is loading. . .</span>) }
-            </p>
+
+            {analysis ? (
+              <div className="font-bangla-regular whitespace-pre-line break-words text-sm md:text-base text-justify mt-6">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {analysis}
+                </ReactMarkdown>
+              </div>
+            ) : (
+              <div className="text-green-800 text-base md:text-lg mt-6">
+                Please wait, data is loading…
+              </div>
+            )}
           </div>
         </div>
       )}
