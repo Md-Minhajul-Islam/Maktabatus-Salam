@@ -35,7 +35,10 @@ const port = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: [process.env.ORIGIN_1, process.env.ORIGIN_2, process.env.ORIGIN_3],
+    origin: [
+      "http://localhost:5173",
+      "https://maktabatus-salam.vercel.app",
+    ],
     credentials: true,
   })
 );
