@@ -74,18 +74,18 @@ async function success(req, res, next) {
   const { tran_id } = req.body;
 
   try {
-    const donation = await pool.query(
-      `SELECT * FROM donation WHERE txn_id = $1`,
-      [tran_id]
-    );
+    // const donation = await pool.query(
+    //   `SELECT * FROM donation WHERE txn_id = $1`,
+    //   [tran_id]
+    // );
 
-    if (donation.rows && donation.rows.length > 0) {
-      const donator = donation.rows[0].email;
-      const subject = "Donation Successfull in Maktabatus Salam";
-      const text = `Thanks for you donation in Maktabatus Salam. Your Transaction Id is ${tran_id}`;
+    // if (donation.rows && donation.rows.length > 0) {
+    //   const donator = donation.rows[0].email;
+    //   const subject = "Donation Successfull in Maktabatus Salam";
+    //   const text = `Thanks for you donation in Maktabatus Salam. Your Transaction Id is ${tran_id}`;
 
-      const response = await sendEmail(donator, subject, text);
-    }
+    //   const response = await sendEmail(donator, subject, text);
+    // }
     res.redirect(`${process.env.DONATION_URL_GET}/${tran_id}`);
   } catch (err) {
     next(err);
