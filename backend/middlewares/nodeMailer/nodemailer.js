@@ -4,7 +4,7 @@ async function sendEmail(to, sub, text) {
   try {
     const transporter = nodemailer.createTransport({
       host: "smtp.ethereal.email",
-      port: 587,
+      port: 2525,
       secure: false,
       auth: {
         user: process.env.ETHEREAL_USERNAME,
