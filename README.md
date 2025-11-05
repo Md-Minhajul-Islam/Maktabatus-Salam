@@ -6,6 +6,10 @@ A full-stack web application for my local club, Maktabatus Salam, designed to ma
 
 - [maktabatus-salam.vercel.app](https://maktabatus-salam.vercel.app/)
 
+### Login
+- username: visit
+- password: 123
+
 ### Key Features
 
 - **AI integrated blog**: When a user clicks the Insight button on a blog post, the system generates and displays a concise, AI-powered overview and key takeaways using Gemini.
