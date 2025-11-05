@@ -3,7 +3,7 @@ const verifyToken = require("../middlewares/common/verifyToken");
 
 const router = express.Router();
 
-router.get("/", verifyToken(process.env.ROLE1), (req, res) => {
+router.get("/", verifyToken(null), (req, res) => {
   res.status(200).json({ loggedIn: true });
 });
 
