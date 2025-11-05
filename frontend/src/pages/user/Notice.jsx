@@ -46,7 +46,7 @@ const Notice = () => {
     <div>
       <Menu />
       <div className="md:flex md:flex-col">
-        <section className="h-screen md:w-3/4 md:mx-auto mt-1">
+        <section className="h-screen md:w-3/4 md:mx-auto mt-2">
           {notice.map((notice) => (
             <TextCard key={notice.notice_id} data={notice} name={"notice"} />
           ))}
