@@ -2,6 +2,10 @@
 
 A full-stack web application for my local club, Maktabatus Salam, designed to manage and present Islamic educational resources, events, notices, blogs, donations, and a library.
 
+### Live Demo
+
+- [maktabatus-salam.vercel.app](https://maktabatus-salam.vercel.app/)
+
 ### Key Features
 
 - **AI integrated blog**: When a user clicks the Insight button on a blog post, the system generates and displays a concise, AI-powered overview and key takeaways using Gemini.
