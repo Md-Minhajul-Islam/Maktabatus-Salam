@@ -11,8 +11,8 @@ const router = express.Router();
 
 
 router.get("/", getCommittee);
-router.post("/", verifyToken(null), addCommittee);
-router.put("/", verifyToken(null), updateCommittee);
-router.delete("/", verifyToken(null), deleteCommittee);
+router.post("/", verifyToken(process.env.ROLE1), addCommittee);
+router.put("/", verifyToken(process.env.ROLE1), updateCommittee);
+router.delete("/", verifyToken(process.env.ROLE1), deleteCommittee);
 
 module.exports = router;

@@ -7,9 +7,9 @@ const router = express.Router();
 
 // ABOUT SECTION
 router.get('/', getAbout);
-router.post('/', verifyToken(null), addAbout);
-router.put("/", verifyToken(null), updateAbout);
-router.delete("/", verifyToken(null), deleteAbout);
+router.post('/', verifyToken(process.env.ROLE1), addAbout);
+router.put("/", verifyToken(process.env.ROLE1), updateAbout);
+router.delete("/", verifyToken(process.env.ROLE1), deleteAbout);
 
 
 module.exports = router;

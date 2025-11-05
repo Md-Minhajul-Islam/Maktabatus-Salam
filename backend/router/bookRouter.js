@@ -11,8 +11,8 @@ const upload = require("../middlewares/imageUpload/multer");
 
 // Book SECTION
 router.get("/", getBook);
-router.post("/", verifyToken(null), upload.single("book_photo"), addBook);
-router.put("/", verifyToken(null), upload.single("book_photo"), updateBook);
-router.delete("/", verifyToken(null), deleteBook);
+router.post("/", verifyToken(process.env.ROLE1), upload.single("book_photo"), addBook);
+router.put("/", verifyToken(process.env.ROLE1), upload.single("book_photo"), updateBook);
+router.delete("/", verifyToken(process.env.ROLE1), deleteBook);
 
 module.exports = router;

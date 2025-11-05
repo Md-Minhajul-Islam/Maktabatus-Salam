@@ -9,8 +9,8 @@ const {
 const router = express.Router();
 
 router.get("/", getQuran);
-router.post("/", verifyToken(null), addQuran);
-router.put("/", verifyToken(null), updateQuran);
-router.delete("/", verifyToken(null), deleteQuran);
+router.post("/", verifyToken(process.env.ROLE1), addQuran);
+router.put("/", verifyToken(process.env.ROLE1), updateQuran);
+router.delete("/", verifyToken(process.env.ROLE1), deleteQuran);
 
 module.exports = router;

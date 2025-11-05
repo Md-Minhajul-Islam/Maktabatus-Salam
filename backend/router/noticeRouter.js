@@ -11,8 +11,8 @@ const router = express.Router();
 
 // Notice SECTION
 router.get("/", getNotice);
-router.post("/", verifyToken(null), addNotice);
-router.put("/", verifyToken(null), updateNotice);
-router.delete("/", verifyToken(null), deleteNotice);
+router.post("/", verifyToken(process.env.ROLE1), addNotice);
+router.put("/", verifyToken(process.env.ROLE1), updateNotice);
+router.delete("/", verifyToken(process.env.ROLE1), deleteNotice);
 
 module.exports = router;

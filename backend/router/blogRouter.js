@@ -10,8 +10,8 @@ const {
 const router = express.Router();
 
 router.get("/", getBlog);
-router.post("/", verifyToken(null), addBlog);
-router.put("/", verifyToken(null), updateBlog);
-router.delete("/", verifyToken(null), deleteBlog);
+router.post("/", verifyToken(process.env.ROLE1), addBlog);
+router.put("/", verifyToken(process.env.ROLE1), updateBlog);
+router.delete("/", verifyToken(process.env.ROLE1), deleteBlog);
 
 module.exports = router;
