@@ -10,7 +10,6 @@ const Login = () => {
   const [error, setError] = useState(null);
   const { tran_id } = useParams();
 
-
   const handleDonation = async (e) => {
     e.preventDefault();
     try {
@@ -41,45 +40,59 @@ const Login = () => {
   return (
     <div>
       <Menu />
-      <div className="flex flex-col items-center font-mono text-md">
+      <div className="flex flex-col items-center px-4 md:px-8 lg:px-16 space-y-6">
         <form
           onSubmit={handleDonation}
-          className="flex flex-col m-15 md:text-lg md:gap-3"
+          className="mt-20 w-full max-w-md bg-white p-6 rounded-xl shadow-md space-y-4 md:space-y-6"
         >
-          <label htmlFor="amount">Amount(BDT):</label>
-          <input
-            onChange={(e) => setAmount(e.target.value)}
-            className="border rounded-xs md:w-md"
-            type="text"
-            required
-          />
-          <label htmlFor="email">Email:</label>
-          <input
-            onChange={(e) => setEmail(e.target.value)}
-            className="border rounded-xs md:w-md"
-            type="email"
-            required
-          />
+          <div className="flex flex-col">
+            <label htmlFor="amount" className="mb-1 font-medium text-gray-700">
+              Amount (BDT)
+            </label>
+            <input
+              onChange={(e) => setAmount(e.target.value)}
+              type="text"
+              required
+              className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 transition"
+              placeholder="Enter amount"
+            />
+          </div>
+          <div className="flex flex-col">
+            <label htmlFor="email" className="mb-1 font-medium text-gray-700">
+              Email
+            </label>
+            <input
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              required
+              className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 transition"
+              placeholder="Enter your email"
+            />
+          </div>
           <button
             type="submit"
-            className="w-20 m-3 self-center text-xs p-1 pl-3 pr-3 text-white bg-green-700 rounded-xs md:text-base md:hover:cursor-pointer"
+            className="w-full bg-green-700 text-white font-semibold rounded-lg py-2 mt-2 hover:bg-green-800 transition-transform hover:scale-105"
           >
             Donate
           </button>
         </form>
-        {tran_id === "cancel" && (
-          <p className="text-red-500 font-bold font-mono">Donation Canceled!</p>
-        )}
-        {tran_id === "fail" && (
-          <p className="text-red-500 font-bold font-mono">Donation Failed!</p>
-        )}
-        {tran_id && tran_id !== "cancel" && tran_id !== "fail" && (
-          <div className="font-mono text-center">
-            <p className="font-bold text-green-600">Donation Successfull!</p>
-            <p>Transaction Id: {tran_id}</p>
-            <p>Please check your email for confirmation mail.</p>
-          </div>
-        )}
+
+        {/* Transaction Messages  */}
+        <div className="w-full max-w-md text-center space-y-2">
+          {tran_id && tran_id === "cancel" && (
+            <p className="text-red-500 font-bold">Donation Canceled!</p>
+          )}
+          {tran_id && tran_id === "fail" && (
+            <p className="text-red-500 font-bold">Donation Failed!</p>
+          )}
+          {tran_id && tran_id !== "cancel" && tran_id !== "fail" && (
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-green-700">
+              <p className="font-bold">Donation Successful!</p>
+              <p>Transaction Id: {tran_id}</p>
+              <p>Please check your email for confirmation.</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

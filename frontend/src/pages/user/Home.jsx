@@ -62,12 +62,12 @@ const Home = () => {
   return (
     <div className="md:flex md:flex-col">
       <Menu />
-      {/* Quran Section */}
-      <section className="bg-gray-100 text-center p-2 pt-3 relative md:text-xl">
+      {/* Quran Section  */}
+      <section className="bg-gray-50 text-center py-3 px-1 md:text-xl">
         <QuranCard data={currentVerse} />
       </section>
 
-      {/* Blog Section */}
+      {/* Blog Section  */}
       <section className="h-screen md:w-3/4 md:mx-auto">
         {blogs.map((blog) => (
           <TextCard key={blog.blog_id} data={blog} name={"blog"} />

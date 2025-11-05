@@ -45,7 +45,6 @@ export default function EditModal({ isOpen, onClose, editData, onEdit }) {
             Title:<span className="text-red-500">*</span>
           </label>
           <textarea
-            id="title"
             name="title"
             value={title}
             onChange={handleChange}
@@ -60,7 +59,6 @@ export default function EditModal({ isOpen, onClose, editData, onEdit }) {
             Description:<span className="text-red-500">*</span>
           </label>
           <textarea
-            id="description"
             name="description"
             value={description}
             onChange={handleChange}

@@ -45,11 +45,18 @@ const Event = () => {
   return (
     <div>
       <Menu />
-      <section className=" md:flex md:flex-col h-screen md:w-3/4 md:mx-auto">
-        {event.map((event) => (
-          <EventCard key={event.event_id} data={event} />
-        ))}
-      </section>
+      <div className="md:flex md:flex-col">
+        {/* event Section */}
+        <section className="h-screen md:w-3/4 md:mx-auto">
+          {event.map((event) => (
+            <EventCard
+              key={event.event_id}
+              data={event}
+              name={"event"}
+            />
+          ))}
+        </section>
+      </div>
     </div>
   );
 };

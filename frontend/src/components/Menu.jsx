@@ -7,9 +7,9 @@ const Menu = () => {
 
   return (
     <nav className="">
-      {/* Hamburger Menu Icon (only for mobile) */}
+      {/* Mobile Menu Icon */}
       <button
-        className="md:hidden right-2 fixed top-3 text-gray-300"
+        className="md:hidden right-2 fixed top-3.5 text-gray-400 z-100"
         onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? <FaTimes size={20} /> : <FaBars size={20} />}

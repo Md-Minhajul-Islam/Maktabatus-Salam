@@ -26,7 +26,6 @@ const Library = () => {
     fetchData();
   }, []);
 
-
   const searchData = (e) => {
     let value = e.target.value;
     value = value?.trim()?.toLowerCase();
@@ -66,64 +65,79 @@ const Library = () => {
       <Menu />
       <div className="p-1">
         {/* Search Bar  */}
-        <div className="mb-3 flex justify-center">
+        <div className="relative flex justify-center mb-4">
           <input
             onChange={searchData}
-            placeholder="Search. . ."
-            className="font-bangla-regular text-sm pl-2 border border-green-800 rounded-2xl md:text-sm md:w-lg"
+            placeholder="Search books..."
+            className="font-bangla-regular w-full max-w-md text-sm pl-4 pr-10 py-2 border border-green-800 rounded-full shadow-sm focus:ring-2 focus:ring-green-600 focus:outline-none transition"
             type="text"
           />
         </div>
 
-        {/* Book List  */}
-        <table className="w-full text-xs border border-green-700 border-collapse whitespace-pre-line break-words font-mono md:w-3/4 md:mx-auto md:text-sm">
-          <thead className="bg-green-700 text-white md:text-base">
-            <tr>
-              <th className="border border-green-900 border-collapse">Id</th>
-              <th className="border border-green-900 border-collapse">Photo</th>
-              <th className="border border-green-900 border-collapse">
-                {" "}
-                Description{" "}
-              </th>
-              <th className="border border-green-700 border-collapse">
-                Status
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredBooks.map((book) => (
-              <tr key={book.book_id}>
-                <td className="border border-green-700 border-collapse text-center p-0.5">
-                  {book.book_id}
-                </td>
+        {/* Table  */}
+        <div className="overflow-x-auto">
+          <table className="min-w-full bg-white border border-green-700 rounded-lg overflow-hidden text-xs md:text-sm shadow-sm">
+            <thead className="bg-green-700 text-white">
+              <tr>
+                <th className="py-2 px-3 text-center">ID</th>
+                <th className="py-2 px-3 text-center">Photo</th>
+                <th className="py-2 px-3 text-left">Description</th>
+                <th className="py-2 px-3 text-center">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredBooks.map((book) => (
+                <tr
+                  key={book.book_id}
+                  className="border-t border-green-100 hover:bg-green-50 transition"
+                >
+                  <td className="p-2 text-center text-gray-700 font-semibold">
+                    {book.book_id}
+                  </td>
 
-                <td className="border border-green-700 border-collapse p-0.5">
-                  <div className="flex justify-center items-center">
+                  <td className="p-2 text-center">
                     <img
-                      className="object-cover max-w-30 max-h-30 border border-gray-500 rounded-xs shadow-gray-500 shadow-xs md:max-w-50 md:max-h-50"
+                      className="w-20 h-20 object-cover rounded-sm border border-gray-300 mx-auto shadow-sm"
                       src={book.book_photo}
-                      alt="photo"
+                      alt="Book"
                     />
-                  </div>
-                </td>
+                  </td>
 
-                <td className="border border-green-700 border-collapse p-0.5">
-                  <div className="overflow-y-auto">
-                    <p className="font-bangla-semibold mb-1 text-sm md:text-base">
+                  <td className="p-2">
+                    <p className="font-bangla-semibold text-gray-900 whitespace-pre-line break-words">
                       {book.book_title}
                     </p>
-                    <p className="font-bangla-regular">
+                    <p className="font-bangla-regular text-gray-600 text-xs md:text-sm mt-1 whitespace-pre-line break-words">
                       {book.book_description}
                     </p>
-                  </div>
-                </td>
-                <td className="text-center border border-green-700 border-collapse p-0.5">
-                  {book.book_status}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                  </td>
+
+                  <td className="p-2 text-center">
+                    <span
+                      className={`inline-block px-2 py-1 text-xs rounded-full ${
+                        book.book_status === "available"
+                          ? "bg-green-100 text-green-700"
+                          : "bg-red-100 text-red-600"
+                      }`}
+                    >
+                      {book.book_status}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+              {filteredBooks.length === 0 && (
+                <tr>
+                  <td
+                    colSpan="4"
+                    className="text-center text-gray-500 py-5 italic"
+                  >
+                    No books found.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

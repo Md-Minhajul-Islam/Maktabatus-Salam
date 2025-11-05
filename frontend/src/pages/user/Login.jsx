@@ -40,28 +40,42 @@ const Login = () => {
   return (
     <div>
       <Menu />
-      <div className="flex flex-col items-center font-mono text-md">
+      <div className="flex flex-col items-center justify-center bg-gray-50 px-4">
         <form
           onSubmit={handleLogin}
-          className="flex flex-col m-15 md:text-lg md:gap-3"
+          className="mt-20 w-full max-w-md bg-white p-8 rounded-xl shadow-md space-y-4 md:space-y-6"
         >
-          <label htmlFor="username">Username:</label>
-          <input
-            onChange={(e) => setUsername(e.target.value)}
-            className="border rounded-xs md:w-md"
-            type="text"
-            required
-          />
-          <label htmlFor="password">Password:</label>
-          <input
-            onChange={(e) => setPassword(e.target.value)}
-            className="border rounded-xs md:w-md"
-            type="password"
-            required
-          />
+          <div className="flex flex-col">
+            <label
+              htmlFor="username"
+              className="mb-1 font-medium text-gray-700"
+            >
+              Username
+            </label>
+            <input
+              onChange={(e) => setUsername(e.target.value)}
+              type="text"
+              required
+              className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 transition"
+            />
+          </div>
+          <div className="flex flex-col">
+            <label
+              htmlFor="password"
+              className="mb-1 font-medium text-gray-700"
+            >
+              Password
+            </label>
+            <input
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              required
+              className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 transition"
+            />
+          </div>
           <button
             type="submit"
-            className="w-20 m-3 self-center text-xs p-1 pl-3 pr-3 text-white bg-green-700 rounded-xs md:text-base md:hover:cursor-pointer"
+            className="w-full bg-green-700 text-white font-semibold rounded-lg py-2 mt-2 hover:bg-green-800 transition-transform hover:scale-105"
           >
             Login
           </button>

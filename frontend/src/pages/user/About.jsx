@@ -52,38 +52,53 @@ const About = () => {
   return (
     <div className="md:flex md:flex-col">
       <Menu />
-      {/* About Section  */}
-      <section className="text-sm md:w-3/4 md:mx-auto md:text-base">
-        {about.map((a) => (
-          <div
-            key={a.about_id}
-            className="m-2 p-1.5 text-justify whitespace-pre-line break-words border-1 border-gray-500 rounded-sm shadow-gray-800 shadow-sm"
-          >
-            <p className="font-bangla-bold text-center ">{a.about_title}</p>
-            <p className="font-bangla-regular">{a.about_description}</p>
-          </div>
-        ))}
-      </section>
-
-      {/* Committee Section  */}
-      <section className="text-sm mt-10 m-2 p-1.5 text-justify border-1 border-gray-500 rounded-sm shadow-gray-800 shadow-sm md:w-3/4 md:mx-auto md:text-base">
-        <div>
-          <p className="bg-green-700 rounded-sm text-white p-0.5 m-1 font-bangla-bold text-center whitespace-pre-line break-words">
-            পরিচালনা কমিটি
-          </p>
-        </div>
-        <div className="m-1 p-1.5 border-2 rounded-sm border-green-700 md:text-lg">
-          {committee.map((c) => (
+      <div className="flex flex-col items-center px-4 md:px-8 lg:px-16 space-y-10">
+        {/* About Section  */}
+        <section className="w-full md:w-3/4 space-y-4">
+          {about.map((a) => (
             <div
-              key={c.committee_id}
-              className="hover:bg-green-50 transition-colors duration-200 shadow-gray-300 shadow-sm rounded-sm p-1.5 whitespace-pre-line break-words"
+              key={a.about_id}
+              className="relative p-2 border border-gray-300 rounded-lg shadow hover:shadow-lg transition-shadow bg-white"
             >
-              <p className="font-q-bangla">{c.committee_title}</p>
-              <p className="font-bangla-regular">{c.committee_description}</p>
+              <div className="whitespace-pre-line break-words text-left">
+                <p className="font-bangla-bold text-center text-lg md:text-xl mb-1">
+                  {a.about_title}
+                </p>
+                <p className="font-bangla-regular text-sm md:text-base">
+                  {a.about_description}
+                </p>
+              </div>
             </div>
           ))}
-        </div>
-      </section>
+        </section>
+
+        {/* Committee Section  */}
+        <section className="w-full md:w-3/4 space-y-4">
+          <div className="relative mb-2">
+            <p className="bg-green-700 rounded-lg text-white py-2 px-4 text-center font-bangla-bold text-lg md:text-xl">
+              পরিচালনা কমিটি
+            </p>
+          </div>
+
+          <div className="space-y-2">
+            {committee.map((c) => (
+              <div
+                key={c.committee_id}
+                className="relative p-4 border border-green-700 rounded-lg shadow hover:bg-green-50 transition-colors"
+              >
+                <div className="whitespace-pre-line break-words">
+                  <p className="font-q-bangla text-base md:text-xl mb-1">
+                    {c.committee_title}
+                  </p>
+                  <p className="font-bangla-regular text-sm md:text-base">
+                    {c.committee_description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
     </div>
   );
 };

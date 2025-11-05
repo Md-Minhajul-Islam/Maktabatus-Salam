@@ -127,17 +127,17 @@ const Blog = () => {
     <div>
       <AdminMenu />
       <div className="md:flex md:flex-col">
-        <section className="p-1.5">
+        <div className="flex justify-end pr-1 md:w-3/4">
           <button
+            title="Add Post"
             onClick={() => {
               onEdit({});
             }}
-            className="text-green-700 right-2 absolute font-bold md:right-1/8 md:hover:cursor-pointer"
+            className="text-green-700 my-2 font-bold md:hover:cursor-pointer"
           >
-            <img className="w-5" src={AddPostIcon} alt="Add+" />
+            <img className="w-6" src={AddPostIcon} alt="Add+" />
           </button>
-          <br />
-        </section>
+        </div>
 
         {/* Blog Section */}
         <section className="h-screen md:w-3/4 md:mx-auto">

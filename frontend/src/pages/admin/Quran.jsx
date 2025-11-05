@@ -4,7 +4,8 @@ import CheckLoggedIn from "../../utils/CheckLoggedIn";
 import AdminMenu from "../../components/AdminMenu";
 import QuranCard from "../../components/QuranCard";
 import ConfirmDialog from "../../utils/ConfirmDialog";
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaTimes } from "react-icons/fa";
+import AddPostIcon from "/images/add-post-icon.png";
 import API_BASE_URL from "../../config";
 
 const Quran = () => {
@@ -12,6 +13,7 @@ const Quran = () => {
   const [loading, setLoading] = useState(true);
   const [quran, setQuran] = useState([]);
   const [error, setError] = useState(null);
+  const [showVerseForm, setShowVerseForm] = useState(false);
   const [formData, setFormData] = useState({
     verse_no: "",
     verse_arabic: "",
@@ -30,9 +32,9 @@ const Quran = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const quranRes = await axios.get(`${API_BASE_URL}/quran`,{
-        withCredentials: true,
-      });
+        const quranRes = await axios.get(`${API_BASE_URL}/quran`, {
+          withCredentials: true,
+        });
         setQuran(quranRes.data);
       } catch (err) {
         setError(err.response.data.message);
@@ -105,58 +107,88 @@ const Quran = () => {
   return (
     <div>
       <AdminMenu />
-      <div className="md:flex md:flex-col">
-        <div className="p-3 md:w-3/4 md:mx-auto">
-          <form
-            onSubmit={handleSubmit}
-            className="flex flex-col text-sm font-mono md:text-base"
-          >
-            <input
-              className="border-1 border-gray-500 m-0.5 rounded-xs"
-              type="text"
-              name="verse_no"
-              value={formData.verse_no}
-              onChange={handleChange}
-              placeholder="Verse no = 002001 [2nd Chapter, 1st Verse]"
-              required
-            />
-            <input
-              className="border-1 border-gray-500 m-0.5 rounded-xs"
-              type="text"
-              name="verse_arabic"
-              value={formData.verse_arabic}
-              onChange={handleChange}
-              placeholder="Arabic text..."
-              required
-            ></input>
-            <input
-              className="border-1 border-gray-500 m-0.5 rounded-xs"
-              type="text"
-              name="verse_bangla"
-              value={formData.verse_bangla}
-              onChange={handleChange}
-              placeholder="Bangla translation..."
-              required
-            ></input>
-            <button
-              className="bg-green-800 text-white text-sm md:text-base w-20 mx-auto md:w-30 text-center font-mono m-0.5 rounded-sm md:hover:cursor-pointer"
-              type="submit"
+      <div className="flex flex-col items-center px-4 md:px-8 lg:px-16 space-y-6">
+        {/* Verse Form */}
+        {showVerseForm && (
+          <div className="w-full md:w-3/4 bg-white p-1 rounded-xl shadow-md">
+            <div className="flex justify-end">
+              <button
+                onClick={() => setShowVerseForm(!showVerseForm)}
+                className="text-gray-500 hover:text-red-500 transition"
+              >
+                <FaTimes className="text-lg mb-2" />
+              </button>
+            </div>
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col space-y-3 text-xs md:text-base font-mono"
             >
-              Add Verse
-            </button>
-          </form>
-        </div>
-        {quran.map((verse) => (
-          <div
-            key={verse.verse_no}
-            className="hover:bg-green-50 transition-colors duration-200 bg-gray-50 p-3 mb-1 text-sm rounded-xl relative text-right md:w-3/4 md:mx-auto md:text-base"
-          >
-            <button onClick={() => deleteVerse(verse.verse_no)}>
-              <FaTrash className="text-gray-300 size-3 absolute top-2 left-3 md:text-gray-400 md:hover:cursor-pointer" />
-            </button>
-            <QuranCard data={verse} />
+              <input
+                className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 transition"
+                type="text"
+                name="verse_no"
+                value={formData.verse_no}
+                onChange={handleChange}
+                placeholder="Verse no = 002001 [2nd Chapter, 1st Verse]"
+                required
+              />
+              <input
+                className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 transition"
+                type="text"
+                name="verse_arabic"
+                value={formData.verse_arabic}
+                onChange={handleChange}
+                placeholder="Arabic text..."
+                required
+              />
+              <input
+                className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 transition"
+                type="text"
+                name="verse_bangla"
+                value={formData.verse_bangla}
+                onChange={handleChange}
+                placeholder="Bangla translation..."
+                required
+              />
+              <button
+                type="submit"
+                className="bg-green-700 hover:bg-green-800 text-white font-mono px-6 py-2 rounded-lg mx-auto transition-transform hover:scale-105"
+              >
+                Add Verse
+              </button>
+            </form>
           </div>
-        ))}
+        )}
+        {!showVerseForm && (
+          <div className="w-full md:w-3/4 flex justify-end mt-2 mb-1">
+            <button
+              title="Add Verse"
+              onClick={() => setShowVerseForm(true)}
+              className="flex items-center text-green-700 font-bold hover:cursor-pointer"
+            >
+              <img className="w-6" src={AddPostIcon} alt="Add+" />
+            </button>
+          </div>
+        )}
+
+        {/* Verses List */}
+        <div className="w-full md:w-3/4 space-y-4">
+          {quran.map((verse) => (
+            <div
+              key={verse.verse_no}
+              className="relative bg-gray-50 p-2 rounded-xl shadow hover:shadow-lg hover:bg-green-50 transition-colors duration-200 text-right"
+            >
+              <button
+                onClick={() => deleteVerse(verse.verse_no)}
+                className="absolute top-2 left-2 text-red-400 hover:text-red-500 text-sm md:text-base"
+              >
+                <FaTrash />
+              </button>
+              <br />
+              <QuranCard data={verse} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

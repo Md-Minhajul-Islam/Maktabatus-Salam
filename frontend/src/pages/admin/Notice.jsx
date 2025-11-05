@@ -137,16 +137,17 @@ const Notice = () => {
     <div>
       <AdminMenu />
       <div className="md:flex md:flex-col">
-        <button
-          onClick={() => {
-            onEdit({});
-          }}
-          className="text-green-700 mt-1 right-2 absolute font-bold md:right-1/8 md:hover:cursor-pointer"
-        >
-          <img className="w-5" src={AddNoticeIcon} alt="Add+" />
-        </button>
-        <br></br>
-
+        <div className="flex justify-end pr-1 md:w-3/4">
+          <button
+            title="Add Notice"
+            onClick={() => {
+              onEdit({});
+            }}
+            className="text-green-700 my-2 font-bold md:hover:cursor-pointer"
+          >
+            <img className="w-6" src={AddNoticeIcon} alt="Add+" />
+          </button>
+        </div>
         {/* notice Section */}
         <section className="h-screen md:w-3/4 md:mx-auto">
           <EditModal

@@ -165,88 +165,92 @@ const About = () => {
   return (
     <div>
       <AdminMenu />
-      <div className="md:flex md:flex-col">
+      <div className="flex flex-col items-center px-4 md:px-8 lg:px-16 space-y-10">
         <EditModal
           isOpen={showEditModal}
           editData={editData}
           onEdit={edit}
-          onClose={() => {
-            setShowEditModal(false);
-          }}
+          onClose={() => setShowEditModal(false)}
         />
 
         {/* About Section  */}
-        <section className="text-sm md:w-3/4 md:mx-auto md:text-base">
-          <div className="relative">
+        <section className="w-full md:w-3/4 space-y-4">
+          <div className="flex justify-end pr-1">
             <button
-              onClick={() => {
-                onEdit(null, "about");
-              }}
-              className="top-1 right-2 absolute"
+              className="text-green-700 my-1 font-bold md:hover:cursor-pointer"
+              onClick={() => onEdit(null, "about")}
             >
-              <img
-                className="w-5 md:hover:cursor-pointer"
-                src={AddPostIcon}
-                alt="Add+"
-              />
+              <img className="w-6" src={AddPostIcon} alt="Add+" />
             </button>
           </div>
-          <br />
+
           {about.map((a) => (
             <div
               key={a.about_id}
-              className=" relative m-2 p-1.5 text-justify border-1 border-gray-500 rounded-sm shadow-gray-800 shadow-sm"
+              className="relative p-2 border border-gray-300 rounded-lg shadow hover:shadow-lg transition-shadow bg-white"
             >
-              <div className="absolute top-1 right-2 flex gap-2">
+              <div className="absolute top-2 right-2 flex gap-2">
                 <button onClick={() => onEdit(a, "about")}>
-                  <FaEdit className="text-gray-300 size-3 md:text-gray-400 md:hover:cursor-pointer"></FaEdit>
+                  <FaEdit className="text-blue-400 hover:text-blue-500 text-sm md:text-base" />
                 </button>
                 <button onClick={() => onDelete(a.about_id, "about")}>
-                  <FaTrash className="text-gray-300 size-3 md:text-gray-400 md:hover:cursor-pointer" />
+                  <FaTrash className="text-red-400 hover:text-red-500 text-sm md:text-base" />
                 </button>
               </div>
-              <div className="whitespace-pre-line break-words">
-                <p className="font-bangla-bold text-center ">{a.about_title}</p>
-                <p className="font-bangla-regular">{a.about_description}</p>
+
+              <div className="whitespace-pre-line break-words text-left">
+                <p className="font-bangla-bold text-center text-lg md:text-xl mb-1">
+                  {a.about_title}
+                </p>
+                <p className="font-bangla-regular text-sm md:text-base">
+                  {a.about_description}
+                </p>
               </div>
             </div>
           ))}
         </section>
 
         {/* Committee Section  */}
-        <section className="text-sm mt-10 m-2 p-1.5 text-justify border-1 border-gray-500 rounded-sm shadow-gray-800 shadow-sm md:w-3/4 md:mx-auto md:text-base">
-          <div className="relative">
-            <p className="bg-green-700 rounded-sm text-white p-0.5 m-1 font-bangla-bold text-center whitespace-pre-line break-words">
+        <section className="w-full md:w-3/4 space-y-4">
+          <div className="relative mb-2">
+            <p className="bg-green-700 rounded-lg text-white py-2 px-4 text-center font-bangla-bold text-lg md:text-xl">
               পরিচালনা কমিটি
-              <span>
-                <button
-                  onClick={() => {
-                    onEdit(null, "committee");
-                  }}
-                  className="right-2 absolute font-bold md:hover:cursor-pointer"
-                >
-                  <img className="w-5" src={AddPostIconWhite} alt="Add+" />
-                </button>
-              </span>
+              <button
+                onClick={() => onEdit(null, "committee")}
+                className="absolute right-4 top-2 hover:cursor-pointer"
+              >
+                <img className="w-5" src={AddPostIconWhite} alt="Add+" />
+              </button>
             </p>
           </div>
-          <div className="m-1 p-1.5 border-2 rounded-sm border-green-700 md:text-lg">
+
+          <div className="space-y-2">
             {committee.map((c) => (
               <div
                 key={c.committee_id}
-                className="hover:bg-green-50 transition-colors duration-200 relative shadow-gray-300 shadow-sm rounded-sm p-1.5 whitespace-pre-line break-words"
+                className="relative p-4 border border-green-700 rounded-lg hover:bg-green-50 transition-colors"
               >
-                <div className="absolute top-1 right-2 flex gap-2">
-                  <button onClick={() => onEdit(c, "committee")}>
-                    <FaEdit className="text-gray-300 size-3 md:text-gray-400 md:hover:cursor-pointer"></FaEdit>
+                {/* Edit/Delete buttons */}
+                <div className="absolute top-2 right-2 flex gap-2">
+                  <button
+                    className="p-1 rounded-full hover:bg-blue-50 transition"
+                    onClick={() => onEdit(c, "committee")}
+                  >
+                    <FaEdit className="text-blue-400 hover:text-blue-500 text-sm md:text-base" />
                   </button>
-                  <button onClick={() => onDelete(c.committee_id, "committee")}>
-                    <FaTrash className="text-gray-300 size-3 md:text-gray-400 md:hover:cursor-pointer" />
+                  <button
+                    className="p-1 rounded-full hover:bg-red-50 transition"
+                    onClick={() => onDelete(c.committee_id, "committee")}
+                  >
+                    <FaTrash className="text-red-400 hover:text-red-500 text-sm md:text-base" />
                   </button>
                 </div>
-                <div>
-                  <p className="font-q-bangla">{c.committee_title}</p>
-                  <p className="font-bangla-regular">
+
+                <div className="whitespace-pre-line break-words">
+                  <p className="font-q-bangla text-base md:text-xl mb-1">
+                    {c.committee_title}
+                  </p>
+                  <p className="font-bangla-regular text-sm md:text-base">
                     {c.committee_description}
                   </p>
                 </div>
