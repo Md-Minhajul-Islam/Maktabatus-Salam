@@ -43,7 +43,10 @@ const Blog = () => {
     const confirmed = await ConfirmDialog();
     if (!confirmed) return;
     try {
-      const deleteRes = await axios.delete(`${API_BASE_URL}/blog`);
+      const deleteRes = await axios.delete(`${API_BASE_URL}/blog`, {
+        data: {blog_id},
+        withCredentials: true,
+      });
       setBlogs((prev) => prev.filter((b) => b.blog_id !== blog_id));
     } catch (err) {
       setError(err.response.data.message);

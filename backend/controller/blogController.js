@@ -3,7 +3,9 @@ const { createError } = require("../middlewares/common/errorHandler");
 
 async function getBlog(req, res, next) {
   try {
-    const blogs = await pool.query(`SELECT * FROM blog ORDER BY updated_at DESC`);
+    const blogs = await pool.query(
+      `SELECT * FROM blog ORDER BY updated_at DESC`
+    );
     res.status(200).json(blogs.rows);
   } catch (err) {
     next(err);
@@ -46,7 +48,9 @@ async function updateBlog(req, res, next) {
     if (isNaN(blog_id)) {
       throw createError("Blog id is required to update a blog.", 400);
     }
-    const existing = await pool.query(`SELECT * FROM blog WHERE blog_id = $1`, [blog_id]);
+    const existing = await pool.query(`SELECT * FROM blog WHERE blog_id = $1`, [
+      blog_id,
+    ]);
     if (existing.rows.length === 0) {
       throw createError("Blog not found", 404);
     }
