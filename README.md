@@ -15,7 +15,7 @@ A full-stack web application for my local club, Maktabatus Salam, designed to ma
 - **AI integrated blog**: When a user clicks the Insight button on a blog post, the system generates and displays a concise, AI-powered overview and key takeaways using Gemini.
 - **Payment gateway**: Secure donation flow via SSLCommerz with success, fail, and cancel handling, plus server-side verification and redirect URLs configured through environment variables.
 - **Email notifier**: Transactional email support (Mailtrap) for notifications and confirmations using Nodemailer.
-- **Admin Dashboard**: Separate Admin Dashboard for background handling.
+- **Admin Dashboard**: Dedicated admin panel for backend management and content control.
 
 ### Tech Stack
 
