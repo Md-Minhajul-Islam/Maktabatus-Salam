@@ -40,7 +40,7 @@ const Login = () => {
   return (
     <div>
       <Menu />
-      <div className="flex flex-col items-center justify-center bg-gray-50 px-4">
+      <div className="flex flex-col items-center justify-cente px-4">
         <form
           onSubmit={handleLogin}
           className="mt-20 w-full max-w-md bg-white p-8 rounded-xl shadow-md space-y-4 md:space-y-6"
