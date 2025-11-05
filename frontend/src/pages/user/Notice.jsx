@@ -45,11 +45,13 @@ const Notice = () => {
   return (
     <div>
       <Menu />
-      <section className="h-screen md:flex md:flex-col md:w-3/4 md:mx-auto">
-        {notice.map((notice) => (
-          <TextCard key={notice.notice_id} data={notice} name={"notice"} />
-        ))}
-      </section>
+      <div className="md:flex md:flex-col">
+        <section className="h-screen md:w-3/4 md:mx-auto">
+          {notice.map((notice) => (
+            <TextCard key={notice.notice_id} data={notice} name={"notice"} />
+          ))}
+        </section>
+      </div>
     </div>
   );
 };
