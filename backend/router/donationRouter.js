@@ -7,6 +7,6 @@ router.post("/", donation);
 router.post("/success/:tran_id", success);
 router.post("/fail", fail);
 router.post("/cancel", cancel);
-router.get("/list", verifyToken(process.env.ROLE1), list);
+router.get("/list", verifyToken(null), list);
 
 module.exports = router;
