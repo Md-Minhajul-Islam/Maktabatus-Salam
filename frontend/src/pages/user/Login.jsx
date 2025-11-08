@@ -62,13 +62,13 @@ const Login = () => {
           </div>
           <div className="flex flex-col">
             <label
-              placeholder="123"
               htmlFor="password"
               className="mb-1 font-medium text-gray-700"
             >
               Password
             </label>
             <input
+              placeholder="123"
               onChange={(e) => setPassword(e.target.value)}
               type="password"
               required
